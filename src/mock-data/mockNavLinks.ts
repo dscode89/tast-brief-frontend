@@ -3,4 +3,6 @@ export const mockNavLinks: { name: string; href: string }[] = [
   { name: "How It Works", href: "/how-it-works" },
   { name: "Plans", href: "/plans" },
   { name: "Pricing", href: "/pricing" },
+  { name: "Contact", href: "/contact" },
+  { name: "Login", href: "/login" },
 ];

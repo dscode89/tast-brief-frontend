@@ -1,0 +1,2 @@
+- make hero image work for images of different sizes
+  - right now it's only working because I have moved the image to the bottom with background-position

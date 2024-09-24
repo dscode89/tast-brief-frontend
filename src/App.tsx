@@ -3,20 +3,19 @@ import { HeaderWithNavigation } from "./components/organisms/HeaderWithNavigatio
 import { mockNavLinks } from "./mock-data/mockNavLinks";
 import { Routes, Route } from "react-router-dom";
 import logo from "./assets/logo.png";
+import { LandingPageTemplate } from "./components/templates/LandingPageTemplate";
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <HeaderWithNavigation
-            logoInfo={{ src: logo, width: 140 }}
-            navLinks={mockNavLinks}
-          />
-        }
-      ></Route>
-    </Routes>
+    <>
+      <HeaderWithNavigation
+        logoInfo={{ src: logo, width: 140 }}
+        navLinks={mockNavLinks}
+      />
+      <Routes>
+        <Route path="/" element={<LandingPageTemplate />}></Route>
+      </Routes>
+    </>
   );
 }
 

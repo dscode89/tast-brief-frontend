@@ -6,7 +6,7 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = styled.header`
-  background-color: transparent;
+  background-color: black;
   border-bottom: 1px solid grey;
   height: 150px;
   padding: 1em;
