@@ -4,10 +4,18 @@ import { mockNavLinks } from "./mock-data/mockNavLinks";
 import { Routes, Route } from "react-router-dom";
 import logo from "./assets/logo.png";
 import { LandingPageTemplate } from "./components/templates/LandingPageTemplate";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Poppins';
+  }
+`;
 
 function App() {
   return (
     <>
+      <GlobalStyle />
       <HeaderWithNavigation
         logoInfo={{ src: logo, width: 140 }}
         navLinks={mockNavLinks}
