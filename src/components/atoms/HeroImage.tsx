@@ -1,4 +1,4 @@
-import { Hero } from "../styled/Hero";
+import { Hero } from "../styled/Images/Hero";
 
 interface LandingHeroSectionProps {
   src: string;

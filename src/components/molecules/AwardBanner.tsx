@@ -1,5 +1,5 @@
-import { ImageBanner } from "../styled/ImageBanner";
-import { LogoContainer } from "../atoms/LogoContainer";
+import { ContentBanner } from "../styled/ContentBanner";
+import { ImageWrapper } from "../atoms/ImageWrapper";
 import { v4 as uuidv4 } from "uuid";
 
 interface AwardBannerProps {
@@ -9,10 +9,10 @@ interface AwardBannerProps {
 
 export const AwardBanner = ({ imgSrcs, widthPx }: AwardBannerProps) => {
   return (
-    <ImageBanner>
+    <ContentBanner>
       {imgSrcs.map((img) => {
-        return <LogoContainer width={widthPx} imgSrc={img} key={uuidv4()} />;
+        return <ImageWrapper width={widthPx} imgSrc={img} key={uuidv4()} />;
       })}
-    </ImageBanner>
+    </ContentBanner>
   );
 };

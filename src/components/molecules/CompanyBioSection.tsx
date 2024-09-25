@@ -1,4 +1,4 @@
-import { Paragraph } from "../styled/Paragraph";
+import { Paragraph } from "../styled/Typography/Paragraph";
 
 interface CompanyBioSummaryProps {
   bio: string;
@@ -37,6 +37,14 @@ export const CompanyBioSection = ({
       >
         {summary}
       </Paragraph>
+      <div
+        style={{
+          height: "2px",
+          backgroundColor: "#ffd1dc",
+          width: "60%",
+          margin: "10px 0",
+        }}
+      ></div>
     </div>
   );
 };

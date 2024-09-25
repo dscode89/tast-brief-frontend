@@ -1,0 +1,9 @@
+import styled from "styled-components";
+
+export const ProductColumn = styled.div<{}>`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px;
+`;

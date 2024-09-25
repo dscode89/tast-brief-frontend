@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ImageBanner = styled.div`
+export const ContentBanner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

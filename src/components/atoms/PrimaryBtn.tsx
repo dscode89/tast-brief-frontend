@@ -1,4 +1,4 @@
-import { PrimaryButton } from "../styled/PrimaryButton";
+import { PrimaryButton } from "../styled/Buttons/PrimaryButton";
 
 interface NavBtnProps {
   children: React.ReactNode;

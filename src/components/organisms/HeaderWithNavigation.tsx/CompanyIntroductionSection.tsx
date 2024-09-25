@@ -1,6 +1,8 @@
 import { AwardBanner } from "../../molecules/AwardBanner";
 import fakeRating from "../../../assets/fakeRating.png";
 import { CompanyBioSection } from "../../molecules/CompanyBioSection";
+import { ProductInfoSection } from "../../molecules/ProductsInfoSection";
+import { mockProducts } from "../../../mock-data/mockProducts";
 import { bioSummary } from "../../../mock-data/mockBioSumary";
 
 export const CompanyIntroductionSection = () => {
@@ -15,6 +17,7 @@ export const CompanyIntroductionSection = () => {
         summaryFontSizeRems={1.3}
         summaryFontWeight={200}
       />
+      <ProductInfoSection products={mockProducts} />
     </section>
   );
 };

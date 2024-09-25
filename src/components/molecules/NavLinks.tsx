@@ -1,4 +1,4 @@
-import { NavLinkList } from "../styled/NavLinkList";
+import { NavLinkList } from "../styled/Header/NavLinkList";
 import { NavLink } from "../atoms/NavLink";
 import { v4 as uuidv4 } from "uuid";
 
