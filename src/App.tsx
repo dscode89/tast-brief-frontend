@@ -11,6 +11,9 @@ function App() {
       <HeaderWithNavigation
         logoInfo={{ src: logo, width: 140 }}
         navLinks={mockNavLinks}
+        linkColor="white"
+        linkHoverColor="#ffd1dc"
+        headerBgColor="#000000"
       />
       <Routes>
         <Route path="/" element={<LandingPageTemplate />}></Route>

@@ -1,10 +1,10 @@
-import { LandingHeroSection } from "../atoms/Hero";
+import { HeroImage } from "../atoms/HeroImage";
 import trainHeroImg from "../../assets/trainHeroImg.jpg";
 
 export const LandingPageTemplate = () => {
   return (
     <>
-      <LandingHeroSection src={trainHeroImg} />
+      <HeroImage src={trainHeroImg} />
     </>
   );
 };

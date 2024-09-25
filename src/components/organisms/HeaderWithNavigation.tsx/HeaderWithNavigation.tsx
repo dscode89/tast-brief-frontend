@@ -1,8 +1,8 @@
-import { FC, useState } from "react";
-import { Header } from "../../atoms/Header";
-import { ImageContainer } from "../../atoms/ImgContainer";
-import { NavLinkContainer } from "../../molecules/NavLinkContainer";
-import { GenericBtn } from "../../atoms/GenericBtn";
+import { FC } from "react";
+import { PageHeader } from "../../atoms/PageHeader";
+import { LogoContainer } from "../../atoms/LogoContainer";
+import { PrimaryBtn } from "../../atoms/PrimaryBtn";
+import { NavLinksContainer } from "../../molecules/NavLinksContainer";
 
 interface HeaderWithNavigationProps {
   logoInfo: {
@@ -10,17 +10,29 @@ interface HeaderWithNavigationProps {
     width: number;
   };
   navLinks: { href: string; name: string }[];
+  linkColor: string;
+  linkHoverColor: string;
+  headerBgColor: string;
 }
 
 export const HeaderWithNavigation: FC<HeaderWithNavigationProps> = ({
   logoInfo,
   navLinks,
+  linkColor,
+  linkHoverColor,
+  headerBgColor,
 }) => {
   return (
-    <Header>
-      <ImageContainer src={logoInfo.src} width={logoInfo.width} />
-      <NavLinkContainer $linkList={navLinks}></NavLinkContainer>
-      <GenericBtn color="white">Sign Up</GenericBtn>
-    </Header>
+    <PageHeader bgcolor={headerBgColor}>
+      <LogoContainer imgSrc={logoInfo.src} width={100} />
+      <NavLinksContainer
+        linkList={navLinks}
+        linkColor={linkColor}
+        linkHoverColor={linkHoverColor}
+      />
+      <PrimaryBtn color="#000000" bgcolor="#ffd1dc">
+        Sign Up
+      </PrimaryBtn>
+    </PageHeader>
   );
 };

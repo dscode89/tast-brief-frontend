@@ -1,17 +1,21 @@
-import styled from "styled-components";
+import { StyledNavLink } from "../styled/StyledNavLink";
 
-export const StyledNavLink = styled.a`
-  margin: 0 10px;
-  font-family: helvetica;
-  font-size: 1.3rem;
-  color: white;
-  text-decoration: none;
-  &:hover,
-  &:focus {
-    cursor: pointer;
-    color: palevioletred;
-  }
-  &:active {
-    color: red;
-  }
-`;
+interface NavLinkProps {
+  href: string;
+  name: string;
+  color: string;
+  hoverColor: string;
+}
+
+export const NavLink = ({ href, name, color, hoverColor }: NavLinkProps) => {
+  return (
+    <StyledNavLink
+      href={href}
+      $color={color}
+      $fontSize={1.3}
+      $hoverColor={hoverColor}
+    >
+      {name}
+    </StyledNavLink>
+  );
+};

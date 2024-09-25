@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ImageContainer = styled.img<{
-  width: number;
+  $width: number;
 }>`
-  width: ${(props) => props.width};
+  width: ${(props) => props.$width}px;
 `;

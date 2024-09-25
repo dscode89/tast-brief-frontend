@@ -4,6 +4,6 @@ interface LandingHeroSectionProps {
   src: string;
 }
 
-export const LandingHeroSection = ({ src }: LandingHeroSectionProps) => {
+export const HeroImage = ({ src }: LandingHeroSectionProps) => {
   return <Hero $src={src} />;
 };
