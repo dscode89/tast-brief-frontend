@@ -17,13 +17,15 @@ export const NavLinks = ({
     <NavLinkList>
       {linkList.map((link) => {
         return (
-          <NavLink
-            href={link.href}
-            name={link.name}
-            key={uuidv4()}
-            color={linkColor}
-            hoverColor={linkHoverColor}
-          />
+          <li style={{ listStyle: "none" }}>
+            <NavLink
+              href={link.href}
+              name={link.name}
+              key={uuidv4()}
+              color={linkColor}
+              hoverColor={linkHoverColor}
+            />
+          </li>
         );
       })}
     </NavLinkList>

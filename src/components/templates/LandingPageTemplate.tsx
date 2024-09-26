@@ -1,7 +1,9 @@
 import { HeroImage } from "../atoms/HeroImage";
 import trainHeroImg from "../../assets/trainHeroImg.jpg";
-import { CompanyIntroductionSection } from "../organisms/CompanyIntroductionSection";
+import acknowledgementImg from "../../assets/certifiedLogo.png";
+import { CompanyIntroductionSection } from "../organisms/CompanyIntroductionSection/CompanyIntroductionSection";
 import { HeroWithActions } from "../molecules/HeroWithActions";
+import { Footer } from "../organisms/Footer/Footer";
 
 export const LandingPageTemplate = () => {
   return (
@@ -18,6 +20,7 @@ export const LandingPageTemplate = () => {
         btnColor="#000000"
         height={600}
       />
+      <Footer footerAcknowlegdmentImg={acknowledgementImg} bgColor="#ffd1dc" />
     </>
   );
 };

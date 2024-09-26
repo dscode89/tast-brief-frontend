@@ -1,9 +1,9 @@
-import { AwardBanner } from "../molecules/AwardBanner";
-import fakeRating from "../../assets/fakeRating.png";
-import { CompanyBioSection } from "../molecules/CompanyBioSection";
-import { ProductInfoSection } from "../molecules/ProductsInfoSection";
-import { mockProducts } from "../../mock-data/mockProducts";
-import { bioSummary } from "../../mock-data/mockBioSumary";
+import { AwardBanner } from "../../molecules/AwardBanner";
+import fakeRating from "../../../assets/fakeRating.png";
+import { CompanyBioSection } from "../../molecules/CompanyBioSection";
+import { ProductInfoSection } from "../../molecules/ProductsInfoSection";
+import { mockProducts } from "../../../mock-data/mockProducts";
+import { bioSummary } from "../../../mock-data/mockBioSumary";
 
 export const CompanyIntroductionSection = () => {
   return (

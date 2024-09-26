@@ -1,6 +1,6 @@
 import { StyledNavLink } from "../styled/Header/StyledNavLink";
 
-interface NavLinkProps {
+export interface NavLinkProps {
   href: string;
   name: string;
   color: string;

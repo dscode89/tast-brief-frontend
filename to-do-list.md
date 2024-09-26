@@ -10,4 +10,8 @@
 - add some styling/animaton to header button so that it grows in size when hovered over and maybe changes color
 
 - could possibly make the ImgContainer more descriptive
+
   - have a think about what attributes you would want to make
+
+- refactor so that the the product column isn't being used for the footer list and products
+  - they have too many differences
