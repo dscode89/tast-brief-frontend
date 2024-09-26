@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
-import { ProductBlock } from "./ProductColumn";
+import { ProductBlock } from "./ProductBlock";
 import { ContentBanner } from "../styled/ContentBanner";
-import { ProductBlockProps } from "./ProductColumn";
+import { ProductBlockProps } from "./ProductBlock";
 
 interface ProductInfoSectionProps {
   products: ProductBlockProps[];

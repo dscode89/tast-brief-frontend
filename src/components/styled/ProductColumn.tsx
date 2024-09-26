@@ -5,5 +5,7 @@ export const ProductColumn = styled.div<{}>`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 30px;
+  padding: 10px;
+  max-width: 300px;
+  flex-wrap: wrap;
 `;
