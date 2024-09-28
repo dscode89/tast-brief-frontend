@@ -8,4 +8,11 @@ export const FooterSectionTemplate = styled.div<{ $leftSideBorder: boolean }>`
   justify-content: space-around;
   background-color: transparent;
   border-left: ${(props) => (props.$leftSideBorder ? "1px solid black" : "")};
+
+  @media (max-width: 850px) {
+    border-top: ${(props) => (props.$leftSideBorder ? "1px solid black" : "")};
+    border-left: none;
+    justify-content: space-around;
+    width: 100%;
+  }
 `;

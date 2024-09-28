@@ -6,4 +6,8 @@ export const FooterTemplate = styled.footer<{ $bgColor: string }>`
   align-items: center;
   padding: 1.2em;
   background-color: ${(props) => props.$bgColor};
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+  }
 `;

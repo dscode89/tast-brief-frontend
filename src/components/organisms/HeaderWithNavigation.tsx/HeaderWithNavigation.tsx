@@ -25,17 +25,19 @@ export const HeaderWithNavigation: FC<HeaderWithNavigationProps> = ({
   return (
     <PageHeader bgcolor={headerBgColor}>
       <ImageWrapper imgSrc={logoInfo.src} width={100} />
-      <nav style={{ width: "100%" }}>
-        <NavLinksContainer
-          linkList={navLinks}
-          linkColor={linkColor}
-          linkHoverColor={linkHoverColor}
-        />
-      </nav>
+      <div style={{ display: "flex" }}>
+        <nav style={{ width: "100%" }}>
+          <NavLinksContainer
+            linkList={navLinks}
+            linkColor={linkColor}
+            linkHoverColor={linkHoverColor}
+          />
+        </nav>
 
-      <PrimaryBtn color="#000000" bgcolor="#ffd1dc">
-        Sign Up
-      </PrimaryBtn>
+        <PrimaryBtn color="#000000" bgcolor="#ffd1dc">
+          Join
+        </PrimaryBtn>
+      </div>
     </PageHeader>
   );
 };

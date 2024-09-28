@@ -1,5 +1,6 @@
 import { HeadingSecondary } from "../atoms/Typography/HeadingSecondary";
 import { PrimaryBtn } from "../atoms/PrimaryBtn";
+import { HeroTitleAndAction } from "../styled/HeroTitleAndAction";
 
 export interface TitleWithActionProps {
   title: string;
@@ -21,15 +22,7 @@ export const HeadingWithAction = ({
   titleColor,
 }: TitleWithActionProps) => {
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: 10,
-      }}
-    >
+    <HeroTitleAndAction>
       <HeadingSecondary fontSizeRem={headerFontSize} color={titleColor}>
         {title}
       </HeadingSecondary>
@@ -37,6 +30,6 @@ export const HeadingWithAction = ({
       <PrimaryBtn color={btnColor} bgcolor={btnBgColor}>
         {btnText}
       </PrimaryBtn>
-    </div>
+    </HeroTitleAndAction>
   );
 };

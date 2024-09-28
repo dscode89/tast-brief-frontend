@@ -4,7 +4,7 @@ export const ContentBanner = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  padding: 1.9em;
+  padding: 20px;
 `;
