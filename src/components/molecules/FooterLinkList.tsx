@@ -1,7 +1,6 @@
-import { ProductColumn } from "../styled/ProductColumn";
+import { FooterListColumn } from "../styled/Footer/FooterListColumn";
 import { HeadingTertiary } from "../atoms/Typography/HeadingTertiary";
 import { NavLinkProps } from "../atoms/NavLink";
-import { ListLinkWrapper } from "../styled/ListLink/ListLinkWrapper"; // I don't like the name of this component
 import { FooterLink } from "../atoms/Typography/FooterLink";
 
 interface FooterLinkListProps {
@@ -11,11 +10,13 @@ interface FooterLinkListProps {
 
 export const FooterLinkList = ({ heading, links }: FooterLinkListProps) => {
   return (
-    <ProductColumn>
+    <FooterListColumn>
       <HeadingTertiary color="#000000" fontSizeRem={1}>
         {heading}
       </HeadingTertiary>
-      <ListLinkWrapper $flexDirection="column" $align="start">
+      {/* <ListLinkWrapper $flexDirection="column" $align="start"> */}
+      <ul>
+        {" "}
         {links.map((link) => {
           return (
             <li style={{ listStyle: "none" }}>
@@ -28,7 +29,9 @@ export const FooterLinkList = ({ heading, links }: FooterLinkListProps) => {
             </li>
           );
         })}
-      </ListLinkWrapper>
-    </ProductColumn>
+      </ul>
+
+      {/* </ListLinkWrapper> */}
+    </FooterListColumn>
   );
 };
