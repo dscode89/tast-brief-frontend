@@ -14,4 +14,9 @@
   - have a think about what attributes you would want to make
 
 - refactor so that the the product column isn't being used for the footer list and products
+
   - they have too many differences
+
+- RESPONSIVENESS OF EVERYTHING
+
+- first hero should probably have an action also
