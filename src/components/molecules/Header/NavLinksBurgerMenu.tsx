@@ -33,7 +33,32 @@ export const NavLinkBurgerMenu = ({
       </RotatingIconWrapper>
 
       {isClicked ? (
-        <VerticalBurgerlNavlinkList $bgColor={dropDownMenuBgColor}>
+        <VerticalBurgerlNavlinkList
+          $bgColor={dropDownMenuBgColor}
+          $isActive={isClicked}
+          $shouldAnimate={shouldAnimate}
+        >
+          <ul>
+            {linkList.map((link) => {
+              return (
+                <li style={{ listStyle: "none" }} key={uuidv4()}>
+                  <NavLink
+                    href={link.href}
+                    name={link.name}
+                    color={linkColor}
+                    hoverColor={linkHoverColor}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </VerticalBurgerlNavlinkList>
+      ) : shouldAnimate ? (
+        <VerticalBurgerlNavlinkList
+          $bgColor={dropDownMenuBgColor}
+          $isActive={isClicked}
+          $shouldAnimate={shouldAnimate}
+        >
           <ul>
             {linkList.map((link) => {
               return (
