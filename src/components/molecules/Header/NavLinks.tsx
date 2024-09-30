@@ -1,5 +1,5 @@
-import { NavLinkList } from "../styled/Header/NavLinkList";
-import { NavLink } from "../atoms/NavLink";
+import { NavLink } from "../../atoms/NavLink";
+import { NavLinkList } from "../../styled/Header/NavLinkList";
 import { v4 as uuidv4 } from "uuid";
 
 interface NavLinksProps {
@@ -17,7 +17,7 @@ export const NavLinks = ({
     <NavLinkList>
       {linkList.map((link) => {
         return (
-          <li style={{ listStyle: "none" }}>
+          <li style={{ listStyle: "none" }} key={uuidv4()}>
             <NavLink
               href={link.href}
               name={link.name}

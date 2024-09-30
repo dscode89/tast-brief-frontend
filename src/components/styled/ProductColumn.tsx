@@ -8,4 +8,9 @@ export const ProductColumn = styled.div`
   padding: 10px;
   max-width: 300px;
   flex-wrap: wrap;
+
+  @media (max-width: 590px) {
+    border-bottom: 1px solid #ffd1dc;
+    margin-bottom: 1em;
+  }
 `;

@@ -1,4 +1,5 @@
 import { NavLinks } from "./NavLinks";
+import { useState, useEffect } from "react";
 
 interface NavLinksContainerProps {
   linkList: { name: string; href: string }[];

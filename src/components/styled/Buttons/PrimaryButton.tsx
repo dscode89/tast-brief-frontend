@@ -15,8 +15,11 @@ export const PrimaryButton = styled.button<{
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  transition: background-color, transform 0.2s ease;
 
   &:hover {
     cursor: pointer;
+    transform: scale(1.1);
+    background-color: #ffdee6;
   }
 `;
