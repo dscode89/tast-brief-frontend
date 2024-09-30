@@ -24,7 +24,7 @@ export const RotatingIconWrapper = styled.div<{
   $fontSize: string;
   $color: string;
   $deg: number;
-  $isClicked: boolean;
+  $isActive: boolean;
   $shouldAnimate: boolean;
 }>`
   font-size: ${(props) => props.$fontSize}rem;
@@ -34,7 +34,7 @@ export const RotatingIconWrapper = styled.div<{
 
   ${(props) =>
     props.$shouldAnimate
-      ? props.$isClicked
+      ? props.$isActive
         ? css`
             animation: ${openBurgerAnimation} 0.5s forwards;
           `

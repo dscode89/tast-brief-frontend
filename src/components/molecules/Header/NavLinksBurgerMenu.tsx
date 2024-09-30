@@ -12,7 +12,7 @@ export const NavLinkBurgerMenu = ({
   linkHoverColor,
   dropDownMenuBgColor,
 }: NavLinksContainerProps) => {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   // this state is useful as it stop the animation running first time
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
@@ -20,22 +20,22 @@ export const NavLinkBurgerMenu = ({
     <>
       <RotatingIconWrapper
         onClick={() => {
-          setIsClicked((current) => !current);
+          setIsActive((current) => !current);
           setShouldAnimate(true);
         }}
         $fontSize="2.5"
         $color="#ffd1dc"
         $deg={90}
-        $isClicked={isClicked}
+        $isActive={isActive}
         $shouldAnimate={shouldAnimate}
       >
         <GiHamburgerMenu />
       </RotatingIconWrapper>
 
-      {isClicked ? (
+      {isActive ? (
         <VerticalBurgerlNavlinkList
           $bgColor={dropDownMenuBgColor}
-          $isActive={isClicked}
+          $isActive={isActive}
           $shouldAnimate={shouldAnimate}
         >
           <ul>
@@ -56,7 +56,7 @@ export const NavLinkBurgerMenu = ({
       ) : shouldAnimate ? (
         <VerticalBurgerlNavlinkList
           $bgColor={dropDownMenuBgColor}
-          $isActive={isClicked}
+          $isActive={isActive}
           $shouldAnimate={shouldAnimate}
         >
           <ul>
