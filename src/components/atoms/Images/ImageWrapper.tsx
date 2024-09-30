@@ -1,4 +1,4 @@
-import { ImageContainer } from "../styled/Images/ImgContainer";
+import { ImageContainer } from "../../styled/Images/ImgContainer";
 
 interface ImageWrapperProps {
   imgSrc: string;

@@ -1,6 +1,6 @@
-import { ProductColumn } from "../styled/ProductColumn";
-import { ImageWrapper } from "../atoms/ImageWrapper";
-import { Paragraph } from "../styled/Typography/Paragraph";
+import { ContentSpacedColumn } from "../../styled/containers/ContentSpacedColumn";
+import { ImageWrapper } from "../../atoms/Images/ImageWrapper";
+import { Paragraph } from "../../styled/Typography/Paragraph";
 
 export interface ProductBlockProps {
   title: string;
@@ -8,20 +8,20 @@ export interface ProductBlockProps {
   img: string;
 }
 
-export const ProductBlock = ({
+export const ProductColumn = ({
   title,
   description,
   img,
 }: ProductBlockProps) => {
   {
     return (
-      <ProductColumn>
+      <ContentSpacedColumn>
         <ImageWrapper width={100} imgSrc={img} />
         <h3 style={{ margin: "10px 0" }}>{title}</h3>
         <Paragraph $fontSize={0.8} $fontWeight={300}>
           {description}
         </Paragraph>
-      </ProductColumn>
+      </ContentSpacedColumn>
     );
   }
 };

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContentBanner = styled.div`
+export const ContentCenteredRow = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

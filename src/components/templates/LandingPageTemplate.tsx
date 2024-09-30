@@ -1,8 +1,8 @@
-import { HeroImage } from "../atoms/HeroImage";
+import { HeroImage } from "../atoms/Images/HeroImage";
 import trainHeroImg from "../../assets/trainHeroImg.jpg";
 import acknowledgementImg from "../../assets/certifiedLogo.png";
 import { CompanyIntroductionSection } from "../organisms/CompanyIntroductionSection/CompanyIntroductionSection";
-import { HeroWithActions } from "../molecules/HeroWithActions";
+import { HeroWithHeaderAndButton } from "../molecules/images/HeroWithHeaderAndButton";
 import { Footer } from "../organisms/Footer/Footer";
 
 export const LandingPageTemplate = () => {
@@ -10,7 +10,7 @@ export const LandingPageTemplate = () => {
     <>
       <HeroImage src={trainHeroImg} height={500} />
       <CompanyIntroductionSection />
-      <HeroWithActions
+      <HeroWithHeaderAndButton
         title="Here is a title for a section with a link."
         btnText="More Info"
         action={() => {}}

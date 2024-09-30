@@ -1,7 +1,7 @@
-import { FooterListColumn } from "../styled/Footer/FooterListColumn";
-import { HeadingTertiary } from "../atoms/Typography/HeadingTertiary";
-import { NavLinkProps } from "../atoms/NavLink";
-import { FooterLink } from "../atoms/Typography/FooterLink";
+import { FooterListColumn } from "../../styled/Footer/FooterListColumn";
+import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
+import { NavLinkProps } from "../../atoms/Links/NavLink";
+import { FooterLink } from "../../atoms/Links/FooterLink";
 import { v4 as uuidv4 } from "uuid";
 
 interface FooterLinkListProps {
@@ -17,7 +17,6 @@ export const FooterLinkList = ({ heading, links }: FooterLinkListProps) => {
       </HeadingTertiary>
       {/* <ListLinkWrapper $flexDirection="column" $align="start"> */}
       <ul>
-        {" "}
         {links.map((link) => {
           return (
             <li style={{ listStyle: "none" }} key={uuidv4()}>

@@ -1,4 +1,4 @@
-import { StyledNavLink } from "../styled/Header/StyledNavLink";
+import { StyledNavLink } from "../../styled/Header/StyledNavLink";
 
 export interface NavLinkProps {
   href: string;

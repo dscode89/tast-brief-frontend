@@ -4,7 +4,7 @@ import { RotatingIconWrapper } from "../../styled/Images/RotatingIconWrapper";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { VerticalBurgerlNavlinkList } from "../../styled/Header/VerticalBurgerNavLinkList";
-import { NavLink } from "../../atoms/NavLink";
+import { NavLink } from "../../atoms/Links/NavLink";
 
 export const NavLinkBurgerMenu = ({
   linkList,

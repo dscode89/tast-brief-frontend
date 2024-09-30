@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { PageHeader } from "../../atoms/PageHeader";
-import { ImageWrapper } from "../../atoms/ImageWrapper";
-import { PrimaryBtn } from "../../atoms/PrimaryBtn";
+import { PageHeader } from "../../atoms/Header/PageHeader";
+import { ImageWrapper } from "../../atoms/Images/ImageWrapper";
+import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
 import { NavLinksContainer } from "../../molecules/Header/NavLinksContainer";
 import { NavLinkBurgerMenu } from "../../molecules/Header/NavLinksBurgerMenu";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";

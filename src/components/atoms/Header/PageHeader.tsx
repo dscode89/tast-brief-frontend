@@ -1,4 +1,4 @@
-import { Header } from "../styled/Header/Header";
+import { Header } from "../../styled/Header/Header";
 
 interface PageHeaderProps {
   bgcolor: string;

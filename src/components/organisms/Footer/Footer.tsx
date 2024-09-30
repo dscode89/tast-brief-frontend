@@ -1,10 +1,10 @@
-import { FooterLinkList } from "../../molecules/FooterLinkList";
+import { FooterLinkList } from "../../molecules/Footer/FooterLinkList";
 import { mockFooterAboutLinks } from "../../../mock-data/MockFooterLinksAbout";
 import { mockContactDetails } from "../../../mock-data/mockContactDetails";
 import { FooterTemplate } from "../../styled/Footer/FooterTemplate";
 import { FooterAddressSection } from "../../molecules/Footer/FooterAddressSection";
 import { FooterLinkSection } from "../../molecules/Footer/FooterLinkSection";
-import { ImageWrapper } from "../../atoms/ImageWrapper";
+import { ImageWrapper } from "../../atoms/Images/ImageWrapper";
 import { FooterAddressInfo } from "../../molecules/Containers/FooterAddressInfo";
 
 interface FooterProps {

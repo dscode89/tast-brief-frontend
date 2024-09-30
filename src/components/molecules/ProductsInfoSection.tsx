@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
-import { ProductBlock } from "./ProductBlock";
-import { ContentBanner } from "../styled/ContentBanner";
-import { ProductBlockProps } from "./ProductBlock";
+import { ProductColumn } from "./Containers/ProductColumn";
+import { ContentCenteredRow } from "../styled/containers/ContentCenteredRow";
+import { ProductBlockProps } from "./Containers/ProductColumn";
 
 interface ProductInfoSectionProps {
   products: ProductBlockProps[];
@@ -9,10 +9,10 @@ interface ProductInfoSectionProps {
 
 export const ProductInfoSection = ({ products }: ProductInfoSectionProps) => {
   return (
-    <ContentBanner>
+    <ContentCenteredRow>
       {products.map((product) => {
         return (
-          <ProductBlock
+          <ProductColumn
             key={uuidv4()}
             title={product.title}
             description={product.description}
@@ -20,6 +20,6 @@ export const ProductInfoSection = ({ products }: ProductInfoSectionProps) => {
           />
         );
       })}
-    </ContentBanner>
+    </ContentCenteredRow>
   );
 };

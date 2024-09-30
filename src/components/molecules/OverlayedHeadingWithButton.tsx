@@ -1,6 +1,6 @@
 import { HeadingSecondary } from "../atoms/Typography/HeadingSecondary";
-import { PrimaryBtn } from "../atoms/PrimaryBtn";
-import { HeroTitleAndAction } from "../styled/HeroTitleAndAction";
+import { PrimaryBtn } from "../atoms/Buttons/PrimaryBtn";
+import { CenteredOverlayContainer } from "../styled/containers/CenteredOverlayContainer";
 
 export interface TitleWithActionProps {
   title: string;
@@ -13,7 +13,7 @@ export interface TitleWithActionProps {
   titleColor: string;
 }
 
-export const HeadingWithAction = ({
+export const OverlayedHeadingAndButton = ({
   title,
   btnText,
   btnBgColor,
@@ -22,7 +22,7 @@ export const HeadingWithAction = ({
   titleColor,
 }: TitleWithActionProps) => {
   return (
-    <HeroTitleAndAction>
+    <CenteredOverlayContainer>
       <HeadingSecondary fontSizeRem={headerFontSize} color={titleColor}>
         {title}
       </HeadingSecondary>
@@ -30,6 +30,6 @@ export const HeadingWithAction = ({
       <PrimaryBtn color={btnColor} bgcolor={btnBgColor}>
         {btnText}
       </PrimaryBtn>
-    </HeroTitleAndAction>
+    </CenteredOverlayContainer>
   );
 };

@@ -1,9 +1,9 @@
-import { HeroImage } from "../atoms/HeroImage";
-import { HeadingWithAction } from "./HeadingWithAction";
-import trainImage2 from "../../assets/trainHeroImg2.jpg";
-import { TitleWithActionProps } from "./HeadingWithAction";
+import { HeroImage } from "../../atoms/Images/HeroImage";
+import { OverlayedHeadingAndButton } from "../OverlayedHeadingWithButton";
+import trainImage2 from "../../../assets/trainHeroImg2.jpg";
+import { TitleWithActionProps } from "../OverlayedHeadingWithButton";
 
-export const HeroWithActions = ({
+export const HeroWithHeaderAndButton = ({
   title,
   btnText,
   action,
@@ -15,7 +15,7 @@ export const HeroWithActions = ({
 }: TitleWithActionProps) => {
   return (
     <HeroImage src={trainImage2} height={height!}>
-      <HeadingWithAction
+      <OverlayedHeadingAndButton
         title={title}
         titleColor={titleColor}
         btnText={btnText}

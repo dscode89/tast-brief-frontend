@@ -1,5 +1,5 @@
-import { ContentBanner } from "../styled/ContentBanner";
-import { ImageWrapper } from "../atoms/ImageWrapper";
+import { ContentCenteredRow } from "../styled/containers/ContentCenteredRow";
+import { ImageWrapper } from "../atoms/Images/ImageWrapper";
 import { v4 as uuidv4 } from "uuid";
 
 interface AwardBannerProps {
@@ -9,10 +9,10 @@ interface AwardBannerProps {
 
 export const AwardBanner = ({ imgSrcs, widthPx }: AwardBannerProps) => {
   return (
-    <ContentBanner>
+    <ContentCenteredRow>
       {imgSrcs.map((img) => {
         return <ImageWrapper width={widthPx} imgSrc={img} key={uuidv4()} />;
       })}
-    </ContentBanner>
+    </ContentCenteredRow>
   );
 };

@@ -1,4 +1,4 @@
-import { NavLinkProps } from "../components/atoms/NavLink";
+import { NavLinkProps } from "../components/atoms/Links/NavLink";
 
 export const mockFooterAboutLinks: NavLinkProps[] = [
   { name: "Home", href: "/", color: "black", hoverColor: "white" },

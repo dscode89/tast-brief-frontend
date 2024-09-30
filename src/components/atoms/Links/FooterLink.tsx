@@ -1,5 +1,5 @@
 import { ListLink } from "../../styled/ListLink/ListLink";
-import { NavLinkProps } from "../NavLink";
+import { NavLinkProps } from "../Links/NavLink";
 
 export const FooterLink = ({ href, name, color, hoverColor }: NavLinkProps) => {
   return (

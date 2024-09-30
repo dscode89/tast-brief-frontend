@@ -1,5 +1,5 @@
 import fakeProductImg from "../assets/fakeProduct.png";
-import { ProductBlockProps } from "../components/molecules/ProductBlock";
+import { ProductBlockProps } from "../components/molecules/Containers/ProductColumn";
 
 console.log(fakeProductImg);
 
