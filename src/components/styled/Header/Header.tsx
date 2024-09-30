@@ -7,4 +7,5 @@ export const Header = styled.header<{ $bgcolor: string }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `;

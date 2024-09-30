@@ -1,10 +1,11 @@
 import { NavLinks } from "./NavLinks";
 import { useState, useEffect } from "react";
 
-interface NavLinksContainerProps {
+export interface NavLinksContainerProps {
   linkList: { name: string; href: string }[];
   linkColor: string;
   linkHoverColor: string;
+  dropDownMenuBgColor?: string;
 }
 
 export const NavLinksContainer = ({

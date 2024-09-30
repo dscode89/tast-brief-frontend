@@ -7,7 +7,6 @@ export const ProductColumn = styled.div`
   align-items: center;
   padding: 10px;
   max-width: 300px;
-  flex-wrap: wrap;
 
   @media (max-width: 590px) {
     border-bottom: 1px solid #ffd1dc;

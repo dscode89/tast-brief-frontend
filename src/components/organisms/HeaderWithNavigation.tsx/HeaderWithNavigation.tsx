@@ -30,7 +30,12 @@ export const HeaderWithNavigation: FC<HeaderWithNavigationProps> = ({
     <PageHeader bgcolor={headerBgColor}>
       <ImageWrapper imgSrc={logoInfo.src} width={100} />
       {width <= 950 ? (
-        <NavLinkBurgerMenu />
+        <NavLinkBurgerMenu
+          linkList={navLinks}
+          linkColor={linkColor}
+          linkHoverColor={linkHoverColor}
+          dropDownMenuBgColor="#000000"
+        />
       ) : (
         <div style={{ display: "flex" }}>
           <nav style={{ width: "100%" }}>
