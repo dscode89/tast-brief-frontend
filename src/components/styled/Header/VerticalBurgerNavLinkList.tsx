@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const VerticalBurgerlNavlinkList = styled.div<{ $bgColor: string }>`
+export const VerticalBurgerlNavlinkList = styled.div<{ $bgColor?: string }>`
   position: absolute;
   display: flex;
   flex-direction: column;
