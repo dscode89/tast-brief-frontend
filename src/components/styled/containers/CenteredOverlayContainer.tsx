@@ -5,5 +5,5 @@ export const CenteredOverlayContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  zindex: 10;
+  zindex: 2;
 `;

@@ -27,7 +27,7 @@ export const OverlayedHeadingAndButton = ({
         {title}
       </HeadingSecondary>
 
-      <PrimaryBtn color={btnColor} bgcolor={btnBgColor}>
+      <PrimaryBtn color={btnColor} bgcolor={btnBgColor} onClick={() => {}}>
         {btnText}
       </PrimaryBtn>
     </CenteredOverlayContainer>

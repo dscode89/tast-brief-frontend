@@ -6,4 +6,5 @@ export const Hero = styled.div<{ $src: string; $height: number }>`
   background-size: cover;
   background-position: bottom;
   position: relative;
+  z-index: 2;
 `;

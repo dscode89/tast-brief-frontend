@@ -5,6 +5,7 @@ import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
 import { NavLinksContainer } from "../../molecules/Header/NavLinksContainer";
 import { NavLinkBurgerMenu } from "../../molecules/Header/NavLinksBurgerMenu";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import { PrimaryButtonWithModal } from "../../molecules/Buttons/PrimaryButtonWithModal";
 
 interface HeaderWithNavigationProps {
   logoInfo: {
@@ -46,9 +47,9 @@ export const HeaderWithNavigation: FC<HeaderWithNavigationProps> = ({
             />
           </nav>
 
-          <PrimaryBtn color="#000000" bgcolor="#ffd1dc">
-            Join
-          </PrimaryBtn>
+          <PrimaryButtonWithModal textColor="#000000" bgcolor="#ffd1dc">
+            Connect
+          </PrimaryButtonWithModal>
         </div>
       )}
     </PageHeader>
