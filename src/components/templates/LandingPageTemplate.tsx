@@ -16,6 +16,7 @@ export const LandingPageTemplate = () => {
         action={() => {}}
         headerFontSize={3.2}
         btnBgColor="#ffd1dc"
+        hoverBtnColor=""
         titleColor="#FFFFFF"
         btnColor="#000000"
         height={600}

@@ -9,6 +9,7 @@ export interface TitleWithActionProps {
   action: () => void;
   btnColor: string;
   btnBgColor: string;
+  hoverBtnColor: string;
   height?: number;
   titleColor: string;
 }
@@ -18,6 +19,7 @@ export const OverlayedHeadingAndButton = ({
   btnText,
   btnBgColor,
   btnColor,
+  hoverBtnColor,
   headerFontSize,
   titleColor,
 }: TitleWithActionProps) => {
@@ -27,7 +29,12 @@ export const OverlayedHeadingAndButton = ({
         {title}
       </HeadingSecondary>
 
-      <PrimaryBtn color={btnColor} bgcolor={btnBgColor} onClick={() => {}}>
+      <PrimaryBtn
+        color={btnColor}
+        bgcolor={btnBgColor}
+        hoverBgColor={hoverBtnColor}
+        onClick={() => {}}
+      >
         {btnText}
       </PrimaryBtn>
     </CenteredOverlayContainer>

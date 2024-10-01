@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const PrimaryButton = styled.button<{
   $bgcolor: string;
   $color: string;
+  $hoverBgColor: string;
 }>`
   width: 180px;
   padding: 1em 0;
@@ -16,10 +17,11 @@ export const PrimaryButton = styled.button<{
   align-items: center;
   border-radius: 5px;
   transition: background-color, transform 0.2s ease;
+  border: none;
 
   &:hover {
     cursor: pointer;
     transform: scale(1.1);
-    background-color: #ffdee6;
+    background-color: ${(props) => props.$hoverBgColor};
   }
 `;

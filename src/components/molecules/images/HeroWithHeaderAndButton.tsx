@@ -19,6 +19,7 @@ export const HeroWithHeaderAndButton = ({
         title={title}
         titleColor={titleColor}
         btnText={btnText}
+        hoverBtnColor=""
         action={action}
         headerFontSize={headerFontSize}
         btnBgColor={btnBgColor}

@@ -1,7 +1,8 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState } from "react";
 import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
 import { CenteredModal } from "../../styled/Modals/CenteredModal";
-import { FixedOpaqueOverlay } from "../../styled/containers/FixedOpaqueOverlay";
+import { FixedWhiteOpaqueOverlay } from "../../styled/containers/FixedOpaqueOverlay";
+import { ModalForm } from "../Forms/ModalForm";
 
 interface PrimaryButtonWithModalProps {
   bgcolor: string;
@@ -15,24 +16,13 @@ export const PrimaryButtonWithModal = ({
   children,
 }: PrimaryButtonWithModalProps) => {
   const [modalIsActive, setModalIsActive] = useState(false);
-  // const dialogRef = useRef<HTMLDialogElement>(null);
 
-  //   useLayoutEffect(() => {
-  //     if (dialogRef.current) {
-  //       if (dialogRef.current.open && !modalIsActive) {
-  //         dialogRef.current.close();
-  //       } else if (!dialogRef.current.open && modalIsActive) {
-  //         dialogRef.current.showModal();
-  //       }
-  //     }
-  //   }, [modalIsActive]);
-
-  console.log(modalIsActive);
   return (
     <div>
       <PrimaryBtn
         color={textColor}
         bgcolor={bgcolor}
+        hoverBgColor=""
         onClick={() => {
           setModalIsActive((current) => !current);
         }}
@@ -41,11 +31,14 @@ export const PrimaryButtonWithModal = ({
       </PrimaryBtn>
 
       {modalIsActive ? (
-        <FixedOpaqueOverlay>
-          <CenteredModal $widthPx={400}>
+        <FixedWhiteOpaqueOverlay>
+          <CenteredModal $widthPx={400} $bgColor="#ffffff">
+            <h3>Join Mailing List!</h3>
+            <ModalForm />
             <PrimaryBtn
-              color="red"
-              bgcolor="gree"
+              color="white"
+              bgcolor="#ED0800"
+              hoverBgColor="#f03932"
               onClick={() => {
                 setModalIsActive((current) => !current);
               }}
@@ -53,7 +46,7 @@ export const PrimaryButtonWithModal = ({
               Close
             </PrimaryBtn>
           </CenteredModal>
-        </FixedOpaqueOverlay>
+        </FixedWhiteOpaqueOverlay>
       ) : null}
     </div>
   );

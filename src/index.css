@@ -7,3 +7,8 @@
 body {
   margin: 0 auto;
 }
+
+::placeholder {
+  color: #d3d3d3;
+  opacity: 1; /* Firefox */
+}

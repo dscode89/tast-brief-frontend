@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FixedOpaqueOverlay = styled.div`
+export const FixedWhiteOpaqueOverlay = styled.div`
   position: fixed;
   left: 0;
   top: 0;
