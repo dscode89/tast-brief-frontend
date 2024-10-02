@@ -37,8 +37,8 @@ export const PrimaryButtonWithModal = ({
             <ModalForm />
             <PrimaryBtn
               color="white"
-              bgcolor="#ED0800"
-              hoverBgColor="#f03932"
+              bgcolor="#000000"
+              hoverBgColor="#36454F"
               onClick={() => {
                 setModalIsActive((current) => !current);
               }}
