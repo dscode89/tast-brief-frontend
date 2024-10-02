@@ -10,7 +10,7 @@ export const MultiBackgroundImageBlock = ({
   const [currentImg, setCurrenImage] = useState(images[0]);
 
   useEffect(() => {
-    let count = -1;
+    let count = 0;
 
     const imgInterval = setInterval(() => {
       count++;
