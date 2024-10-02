@@ -10,4 +10,5 @@ export const Paragraph = styled.p<{
   color: ${(props) => (props.$color ? props.$color : "#000000")};
   margin-bottom: 1.4em;
   width: 60%;
+  padding: 0.75em;
 `;

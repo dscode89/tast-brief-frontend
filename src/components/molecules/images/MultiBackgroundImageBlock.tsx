@@ -1,23 +1,28 @@
 import { useEffect, useState } from "react";
-import img1 from "../../../assets/rotating1.jpg";
-import img2 from "../../../assets/rotating2.jpg";
-import img3 from "../../../assets/rotating3.jpg";
 
-export const MultiBackgroundImageBlock = () => {
-  const imgArray = [img1, img2, img3];
-  const [currentImg, setCurrenImage] = useState(img1);
+interface MultiBackgroundImageBlockProps {
+  images: string[];
+}
+
+export const MultiBackgroundImageBlock = ({
+  images,
+}: MultiBackgroundImageBlockProps) => {
+  const [currentImg, setCurrenImage] = useState(images[0]);
 
   useEffect(() => {
-    let count = 0;
-    setInterval(() => {
+    let count = -1;
+
+    const imgInterval = setInterval(() => {
       count++;
-      console.log(count);
-      if (count === imgArray.length) {
+
+      if (count === images.length) {
         count = 0;
       }
 
-      const newImg = imgArray[count];
+      const newImg = images[count];
       setCurrenImage(newImg);
+
+      return () => clearInterval(imgInterval);
     }, 5000);
   }, []);
 
