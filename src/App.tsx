@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import logo from "./assets/logo.png";
 import { LandingPageTemplate } from "./components/templates/LandingPageTemplate";
 import { createGlobalStyle } from "styled-components";
+import { LoginFormTemplate } from "./components/templates/LoginFormTemplate";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -25,6 +26,7 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<LandingPageTemplate />}></Route>
+        <Route path="/login" element={<LoginFormTemplate />}></Route>
       </Routes>
     </>
   );
