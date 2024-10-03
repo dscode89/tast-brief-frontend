@@ -7,8 +7,16 @@ import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { countryDialCodes } from "../../../mock-data/countryDialCodes";
 import { dateOfBirthOptions } from "../../../mock-data/dateOfBirthOptions";
 import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
+import { useNavigate } from "react-router-dom";
+import { FormEvent } from "react";
 
 export const RegistrationForm = () => {
+  const navigate = useNavigate();
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate("/login");
+  };
+
   return (
     <ContentCenteredColumn
       style={{
@@ -17,6 +25,7 @@ export const RegistrationForm = () => {
       }}
     >
       <form
+        onSubmit={handleSubmit}
         style={{
           border: "1px solid #D3D3D3",
           borderRadius: "5px",
