@@ -27,7 +27,6 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPageTemplate />}></Route>
         <Route path="/login" element={<LoginFormTemplate />}></Route>
-        <Route path="/login/register" element={<LoginFormTemplate />}></Route>
       </Routes>
     </>
   );

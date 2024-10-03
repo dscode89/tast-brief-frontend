@@ -6,17 +6,20 @@ import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { countryDialCodes } from "../../../mock-data/countryDialCodes";
 import { dateOfBirthOptions } from "../../../mock-data/dateOfBirthOptions";
 import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
-import { useNavigate } from "react-router-dom";
-import { FormEvent } from "react";
+
+import React, { FormEvent, SetStateAction } from "react";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
 import { SelectDropDown } from "./SelectDropDown";
 import { PhoneNumberInput } from "./PhoneNumberInput";
 
-export const RegistrationForm = () => {
-  const navigate = useNavigate();
+export interface SignInFormProps {
+  setIsLogin: React.Dispatch<SetStateAction<boolean>>;
+}
+
+export const RegistrationForm = ({ setIsLogin }: SignInFormProps) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/login");
+    setIsLogin(true);
   };
 
   return (

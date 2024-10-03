@@ -5,8 +5,9 @@ import { FormLink } from "../../styled/Forms/FormLink";
 import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
 import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
+import { SignInFormProps } from "./RegistrationForm";
 
-export const LoginForm = () => {
+export const LoginForm = ({ setIsLogin }: SignInFormProps) => {
   return (
     <ContentCenteredColumn
       style={{
@@ -37,7 +38,13 @@ export const LoginForm = () => {
         </label>
       </VerticalFormWrapper>
 
-      <FormLink href="/login/register" $color="#5dbea3" $fontSize={1.1}>
+      <FormLink
+        $color="#5dbea3"
+        $fontSize={1.1}
+        onClick={() => {
+          setIsLogin(false);
+        }}
+      >
         Not registered? Click here
       </FormLink>
       <FormLink href="/password-reset" $color="#5dbea3" $fontSize={1.1}>
