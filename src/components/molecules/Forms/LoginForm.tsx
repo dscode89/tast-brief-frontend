@@ -4,6 +4,7 @@ import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
 import { FormLink } from "../../styled/Forms/FormLink";
 import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
 import backgroundImg from "../../../assets/white-pattern-background.jpg";
+import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
 
 export const LoginForm = () => {
   return (
@@ -13,20 +14,7 @@ export const LoginForm = () => {
         backgroundSize: "cover",
       }}
     >
-      <form
-        style={{
-          border: "1px solid #D3D3D3",
-          borderRadius: "5px",
-          padding: "1.6em",
-          display: "flex",
-          flexDirection: "column",
-          width: "45%",
-          justifyContent: "center",
-          alignItems: "center",
-          boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
-          backgroundColor: "#ffffff",
-        }}
-      >
+      <VerticalFormWrapper>
         <HeadingTertiary fontSizeRem={1.3} color="">
           Enter Login Details
         </HeadingTertiary>
@@ -47,7 +35,8 @@ export const LoginForm = () => {
           Remember me?
           <input type="checkbox" style={{ marginLeft: "0.2em" }} />
         </label>
-      </form>
+      </VerticalFormWrapper>
+
       <FormLink href="/login/register" $color="#5dbea3" $fontSize={1.1}>
         Not registered? Click here
       </FormLink>
