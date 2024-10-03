@@ -5,6 +5,8 @@ import { FormLink } from "../../styled/Forms/FormLink";
 import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
 import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { countryDialCodes } from "../../../mock-data/countryDialCodes";
+import { dateOfBirthOptions } from "../../../mock-data/dateOfBirthOptions";
+import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
 
 export const RegistrationForm = () => {
   return (
@@ -38,7 +40,20 @@ export const RegistrationForm = () => {
           type="password"
         />
         <BorderBottomTextInput placeholder="Enter email..." />
-        <div style={{ width: "90%", display: "flex" }}>
+        <div
+          style={{
+            width: "90%",
+            display: "flex",
+            justifyContent: "space-around",
+            position: "relative",
+          }}
+        >
+          <div style={{ position: "absolute", top: -16, left: 0 }}>
+            <HeadingQuarternary fontSizeRem={0.7} color="#a8a8a8">
+              Contact Number
+            </HeadingQuarternary>
+          </div>
+
           <select name="country-dial code" id="">
             {countryDialCodes.map((countryInfo) => {
               return (
@@ -48,8 +63,58 @@ export const RegistrationForm = () => {
               );
             })}
           </select>
-          <input type="text" style={{ width: "100%" }} />
+          <input
+            type="text"
+            style={{
+              width: "90%",
+              marginLeft: "4px",
+              outline: "none",
+              border: "1px solid #5dbea3",
+              borderRadius: "2px",
+              height: "25px",
+            }}
+          />
         </div>
+        <div
+          style={{
+            width: "90%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            position: "relative",
+            margin: "25px 5px",
+          }}
+        >
+          <HeadingQuarternary fontSizeRem={0.7} color="#a8a8a8">
+            Date Of Birth
+          </HeadingQuarternary>
+          <select name="date" id="">
+            {dateOfBirthOptions.days.map((day) => {
+              return <option value={day}>{day}</option>;
+            })}
+          </select>
+          <select name="month" id="">
+            {dateOfBirthOptions.months.map((month) => {
+              return <option value={month}>{month}</option>;
+            })}
+          </select>
+          <select name="year" id="">
+            {dateOfBirthOptions.years.map((year) => {
+              return <option value={year}>{year}</option>;
+            })}
+          </select>
+        </div>
+        <BorderBottomTextInput placeholder="Enter company..." />
+        <BorderBottomTextInput placeholder="Enter role..." />
+        <BorderBottomTextInput placeholder="Enter job title..." />
+        <PrimaryBtn
+          onClick={() => {}}
+          color="white"
+          bgcolor="#5dbea3"
+          hoverBgColor="#7dcbb5"
+        >
+          Submit
+        </PrimaryBtn>
       </form>
     </ContentCenteredColumn>
   );
