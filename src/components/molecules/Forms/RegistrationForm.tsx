@@ -14,6 +14,8 @@ import { PhoneNumberInput } from "./PhoneNumberInput";
 
 export interface SignInFormProps {
   setIsLogin: React.Dispatch<SetStateAction<boolean>>;
+  startAnimation?: boolean;
+  setStartAnimation?: React.Dispatch<SetStateAction<boolean>>;
 }
 
 export const RegistrationForm = ({ setIsLogin }: SignInFormProps) => {
@@ -24,6 +26,8 @@ export const RegistrationForm = ({ setIsLogin }: SignInFormProps) => {
 
   return (
     <ContentCenteredColumn
+      $shouldAnimate={true}
+      $animateDirection="left"
       style={{
         backgroundImage: `url(${backgroundImg})`,
         backgroundSize: "cover",

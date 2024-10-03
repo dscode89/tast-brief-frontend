@@ -7,9 +7,15 @@ import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
 import { SignInFormProps } from "./RegistrationForm";
 
-export const LoginForm = ({ setIsLogin }: SignInFormProps) => {
+export const LoginForm = ({
+  setIsLogin,
+  startAnimation,
+  setStartAnimation,
+}: SignInFormProps) => {
   return (
     <ContentCenteredColumn
+      $shouldAnimate={startAnimation!}
+      $animateDirection="right"
       style={{
         backgroundImage: `url(${backgroundImg})`,
         backgroundSize: "cover",
@@ -43,6 +49,7 @@ export const LoginForm = ({ setIsLogin }: SignInFormProps) => {
         $fontSize={1.1}
         onClick={() => {
           setIsLogin(false);
+          setStartAnimation!(true);
         }}
       >
         Not registered? Click here
