@@ -19,7 +19,7 @@ export const PrimarySecondaryParagraph = ({
   secondaryParagraphFontWeight,
 }: PrimarySecondaryParagraphProps) => {
   return (
-    <ContentCenteredColumn>
+    <ContentCenteredColumn $shouldAnimate={false}>
       <Paragraph
         $fontSize={primaryParagraphFontSize}
         $fontWeight={primaryParagraphFontWeight}

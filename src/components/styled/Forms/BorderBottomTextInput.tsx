@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const BorderBottomTextInput = styled.input`
   height: 40px;
   width: 90%;
-  margin-bottom: 1.3em;
+  margin-bottom: 0.7em;
   border: none;
   border-bottom: 1px solid #5dbea3;
   outline: none;

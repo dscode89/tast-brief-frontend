@@ -6,19 +6,25 @@ import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { countryDialCodes } from "../../../mock-data/countryDialCodes";
 import { dateOfBirthOptions } from "../../../mock-data/dateOfBirthOptions";
 import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
-
+import { FormLink } from "../../styled/Forms/FormLink";
 import React, { FormEvent, SetStateAction } from "react";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
 import { SelectDropDown } from "./SelectDropDown";
 import { PhoneNumberInput } from "./PhoneNumberInput";
+import { FormErrorContainer } from "../Errors/FormErrorContainer";
 
 export interface SignInFormProps {
   setIsLogin: React.Dispatch<SetStateAction<boolean>>;
-  startAnimation?: boolean;
   setStartAnimation?: React.Dispatch<SetStateAction<boolean>>;
+  setShowModal?: React.Dispatch<SetStateAction<boolean>>;
+  startAnimation?: boolean;
+  showModal?: boolean;
 }
 
-export const RegistrationForm = ({ setIsLogin }: SignInFormProps) => {
+export const RegistrationForm = ({
+  setIsLogin,
+  setShowModal,
+}: SignInFormProps) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLogin(true);
@@ -27,7 +33,7 @@ export const RegistrationForm = ({ setIsLogin }: SignInFormProps) => {
   return (
     <ContentCenteredColumn
       $shouldAnimate={true}
-      $animateDirection="left"
+      $animateDirection="up"
       style={{
         backgroundImage: `url(${backgroundImg})`,
         backgroundSize: "cover",
@@ -37,13 +43,19 @@ export const RegistrationForm = ({ setIsLogin }: SignInFormProps) => {
         <HeadingTertiary fontSizeRem={1.3} color="">
           Let's get set up!
         </HeadingTertiary>
-        <BorderBottomTextInput placeholder="Enter firstname..." />
-        <BorderBottomTextInput placeholder="Enter lastname..." />
+        <BorderBottomTextInput
+          placeholder="Enter firstname..."
+          id="firstName"
+        />
+        <FormErrorContainer>Must be this</FormErrorContainer>
+        <BorderBottomTextInput placeholder="Enter lastname..." id="lastName" />
         <BorderBottomTextInput
           placeholder="Enter password..."
           type="password"
+          id="reg-password"
+          autoComplete="false"
         />
-        <BorderBottomTextInput placeholder="Enter email..." />
+        <BorderBottomTextInput placeholder="Enter email..." id="reg-email" />
         <PhoneNumberInput countryDialCodes={countryDialCodes} />
 
         <div
@@ -79,9 +91,20 @@ export const RegistrationForm = ({ setIsLogin }: SignInFormProps) => {
             optionValue="year"
           />
         </div>
-        <BorderBottomTextInput placeholder="Enter company..." />
-        <BorderBottomTextInput placeholder="Enter role..." />
-        <BorderBottomTextInput placeholder="Enter job title..." />
+        <BorderBottomTextInput
+          placeholder="Enter company..."
+          id="company"
+          autoComplete="false"
+        />
+        <BorderBottomTextInput
+          placeholder="Enter role..."
+          id="role
+        "
+        />
+        <BorderBottomTextInput
+          placeholder="Enter job title..."
+          id="job-title"
+        />
         <PrimaryBtn
           onClick={() => {}}
           color="white"
@@ -91,6 +114,15 @@ export const RegistrationForm = ({ setIsLogin }: SignInFormProps) => {
           Submit
         </PrimaryBtn>
       </VerticalFormWrapper>
+      <FormLink
+        $color="#5dbea3"
+        $fontSize={1.1}
+        onClick={() => {
+          setShowModal!(true);
+        }}
+      >
+        Need Help?
+      </FormLink>
     </ContentCenteredColumn>
   );
 };

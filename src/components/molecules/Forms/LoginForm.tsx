@@ -25,10 +25,11 @@ export const LoginForm = ({
         <HeadingTertiary fontSizeRem={1.3} color="">
           Enter Login Details
         </HeadingTertiary>
-        <BorderBottomTextInput placeholder="Enter Email..." />
+        <BorderBottomTextInput placeholder="Enter Email..." id="log-email" />
         <BorderBottomTextInput
           placeholder="Enter Password..."
           type="password"
+          id="log-password"
         />
         <PrimaryBtn
           color="white"
@@ -40,7 +41,11 @@ export const LoginForm = ({
         </PrimaryBtn>
         <label>
           Remember me?
-          <input type="checkbox" style={{ marginLeft: "0.2em" }} />
+          <input
+            type="checkbox"
+            style={{ marginLeft: "0.2em" }}
+            id="log-checkbox"
+          />
         </label>
       </VerticalFormWrapper>
 

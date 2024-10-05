@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { LoginForm } from "../../molecules/Forms/LoginForm";
 import { RegistrationForm } from "../../molecules/Forms/RegistrationForm";
 

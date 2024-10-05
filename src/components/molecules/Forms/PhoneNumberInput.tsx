@@ -32,6 +32,7 @@ export const PhoneNumberInput = ({ countryDialCodes }: PhoneNumberProps) => {
       />
       <input
         type="text"
+        id="reg-phone-num"
         style={{
           width: "90%",
           marginLeft: "4px",

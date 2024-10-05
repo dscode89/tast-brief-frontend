@@ -1,14 +1,14 @@
 import styled, { css, keyframes } from "styled-components";
 
-const ColumnSlideLeft = keyframes`
+const ColumnSlideUp = keyframes`
   0% {
-    transform: translateX(100%);
+    transform: translateY(100%);
     opacity: 0;
   
   }
 
   100% {
-    transform: translateX(0%);
+    transform: translateY(0%);
     opacity: 1;
    
   }
@@ -30,9 +30,10 @@ const ColumnSlideRight = keyframes`
 
 export const ContentCenteredColumn = styled.div<{
   $shouldAnimate: boolean;
-  $animateDirection: "left" | "right";
+  $animateDirection?: "up" | "right";
 }>`
   width: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,13 +41,12 @@ export const ContentCenteredColumn = styled.div<{
   transition: transform, opacity 1s ease-in-out;
   ${(props) =>
     props.$shouldAnimate
-      ? props.$animateDirection === "left"
+      ? props.$animateDirection === "up"
         ? css`
-            animate: ${ColumnSlideLeft} 1s ease-in;
+            animation: ${ColumnSlideUp} 0.5s ease-in;
           `
         : css`
-            animate: ${ColumnSlideRight} 1s ease-in;
+            animation: ${ColumnSlideRight} 0.5s ease-in;
           `
       : null}
-  animation: ${ColumnSlideLeft} 1s ease-in;
 `;

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { VerticalBurgerlNavlinkList } from "../../styled/Header/VerticalBurgerNavLinkList";
 import { NavLink } from "../../atoms/Links/NavLink";
-import { FixedWhiteOpaqueOverlay } from "../../styled/containers/FixedOpaqueOverlay";
+import { FixedOpaqueOverlay } from "../../styled/containers/Overlays/FixedOpaqueOverlay";
 import { CenteredModal } from "../../styled/Modals/CenteredModal";
 import { ModalForm } from "../Forms/ModalForm";
 import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
@@ -27,7 +27,7 @@ export const NavLinkBurgerMenu = ({
   if (modalIsActive) {
     return (
       <>
-        <FixedWhiteOpaqueOverlay>
+        <FixedOpaqueOverlay>
           <CenteredModal $widthPx={400} $bgColor="#ffffff">
             <h3>Join Mailing List!</h3>
             <ModalForm />
@@ -42,7 +42,7 @@ export const NavLinkBurgerMenu = ({
               Close
             </PrimaryBtn>
           </CenteredModal>
-        </FixedWhiteOpaqueOverlay>
+        </FixedOpaqueOverlay>
       </>
     );
   }

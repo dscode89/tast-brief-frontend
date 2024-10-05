@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
 import { CenteredModal } from "../../styled/Modals/CenteredModal";
-import { FixedWhiteOpaqueOverlay } from "../../styled/containers/FixedOpaqueOverlay";
+import { FixedOpaqueOverlay } from "../../styled/containers/Overlays/FixedOpaqueOverlay";
 import { ModalForm } from "../Forms/ModalForm";
 
 interface PrimaryButtonWithModalProps {
@@ -31,7 +31,7 @@ export const PrimaryButtonWithModal = ({
       </PrimaryBtn>
 
       {modalIsActive ? (
-        <FixedWhiteOpaqueOverlay>
+        <FixedOpaqueOverlay>
           <CenteredModal $widthPx={400} $bgColor="#ffffff">
             <h3>Join Mailing List!</h3>
             <ModalForm />
@@ -46,7 +46,7 @@ export const PrimaryButtonWithModal = ({
               Close
             </PrimaryBtn>
           </CenteredModal>
-        </FixedWhiteOpaqueOverlay>
+        </FixedOpaqueOverlay>
       ) : null}
     </div>
   );

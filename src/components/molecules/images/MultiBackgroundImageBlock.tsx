@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 
 interface MultiBackgroundImageBlockProps {
   images: string[];
@@ -32,6 +32,7 @@ export const MultiBackgroundImageBlock = ({
         backgroundImage: `url(${currentImg})`,
         backgroundSize: "cover",
         transition: "background-image 1.5s ease-in",
+        position: "relative",
       }}
     ></div>
   );
