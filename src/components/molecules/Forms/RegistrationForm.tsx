@@ -1,5 +1,5 @@
 import { ContentCenteredColumn } from "../../styled/containers/ContentCenteredColumn";
-import { BorderBottomTextInput } from "../../styled/Forms/BorderBottomTextInput";
+import { BorderBottomTextInput } from "../../styled/Forms/Inputs/BorderBottomTextInput";
 import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
 import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
 import backgroundImg from "../../../assets/white-pattern-background.jpg";

@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const ErrorContainer = styled.div`
   background-color: #faa0a0;
   min-width: 40px;
-  height: 25px;
   border-radius: 3px;
   position: relative;
+  margin-bottom: 0.75em;
   padding: 0.3em;
   color: #000000;
   font-size: 0.8rem;

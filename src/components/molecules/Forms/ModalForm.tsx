@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
-import { BorderBottomTextInput } from "../../styled/Forms/BorderBottomTextInput";
+import { BorderBottomTextInput } from "../../styled/Forms/Inputs/BorderBottomTextInput";
 
 export const ModalForm = () => {
   const [email, setEmail] = useState({

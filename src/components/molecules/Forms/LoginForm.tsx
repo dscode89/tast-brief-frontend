@@ -1,5 +1,5 @@
 import { ContentCenteredColumn } from "../../styled/containers/ContentCenteredColumn";
-import { BorderBottomTextInput } from "../../styled/Forms/BorderBottomTextInput";
+import { BorderBottomTextInput } from "../../styled/Forms/Inputs/BorderBottomTextInput";
 import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
 import { FormLink } from "../../styled/Forms/FormLink";
 import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
@@ -9,6 +9,8 @@ import { SignInFormProps } from "./RegistrationForm";
 import { useState } from "react";
 import regexPatterns from "../../../utils/regexPatterns";
 import { FormErrorContainer } from "../Errors/FormErrorContainer";
+import { InputFieldIconWrapper } from "../../styled/Forms/Inputs/InputFieldIconWrapper";
+import { InputFieldWrapper } from "../../styled/Forms/Inputs/InputFieldWrapper";
 
 export const LoginForm = ({
   setIsLogin,
@@ -28,7 +30,6 @@ export const LoginForm = ({
     e.preventDefault();
 
     if (e.target.id === "log-email") {
-      console.log("change");
       setFormFields((current) => {
         return {
           ...current,
@@ -39,7 +40,17 @@ export const LoginForm = ({
           },
         };
       });
-    } else if (e.target.id === "log-email") {
+    } else if (e.target.id === "log-password") {
+      setFormFields((current) => {
+        return {
+          ...current,
+          password: {
+            isActive: e.target.value ? true : false,
+            value: e.target.value,
+            isValid: regexPatterns.password.test(e.target.value),
+          },
+        };
+      });
     }
   };
 
@@ -56,14 +67,7 @@ export const LoginForm = ({
         <HeadingTertiary fontSizeRem={1.3} color="">
           Enter Login Details
         </HeadingTertiary>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            position: "relative",
-          }}
-        >
+        <InputFieldWrapper>
           <BorderBottomTextInput
             onChange={handleLoginFormChange}
             placeholder="Enter Email..."
@@ -74,33 +78,35 @@ export const LoginForm = ({
           />
 
           {formFields.emailAddress.isValid ? (
-            <p
-              style={{
-                position: "absolute",
-                top: "50%",
-                right: 40,
-                transform: "translate(0%, -80%) rotate(10deg)",
-                color: "#5dbea3",
-              }}
-            >
-              &#10003;
-            </p>
+            <InputFieldIconWrapper>&#10003;</InputFieldIconWrapper>
           ) : null}
-        </div>
-
+        </InputFieldWrapper>
         {!formFields.emailAddress.isValid &&
         formFields.emailAddress.isActive ? (
           <FormErrorContainer>Invalid Email Format!</FormErrorContainer>
         ) : null}
-        <BorderBottomTextInput
-          onChange={handleLoginFormChange}
-          placeholder="Enter Password..."
-          type="password"
-          id="log-password"
-          value={formFields.password.value}
-          $isActive={formFields.password.isActive}
-          $isValid={formFields.password.isValid}
-        />
+
+        <InputFieldWrapper>
+          <BorderBottomTextInput
+            onChange={handleLoginFormChange}
+            placeholder="Enter Password..."
+            type="password"
+            id="log-password"
+            value={formFields.password.value}
+            $isActive={formFields.password.isActive}
+            $isValid={formFields.password.isValid}
+          />
+          {formFields.password.isValid ? (
+            <InputFieldIconWrapper>&#10003;</InputFieldIconWrapper>
+          ) : null}
+        </InputFieldWrapper>
+        {!formFields.password.isValid && formFields.password.isActive ? (
+          <FormErrorContainer>
+            Password must contain 1 number(0-9), 1 uppercase letter, 1 special
+            character and be between 8 and 12 chars long.
+          </FormErrorContainer>
+        ) : null}
+
         <PrimaryBtn
           color="white"
           bgcolor="#5dbea3"
