@@ -148,6 +148,7 @@ export const RegistrationForm = ({
           color="white"
           bgcolor="#5dbea3"
           hoverBgColor="#7dcbb5"
+          isDisabled={false}
         >
           Submit
         </PrimaryBtn>

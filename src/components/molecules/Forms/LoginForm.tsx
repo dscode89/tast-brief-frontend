@@ -22,6 +22,7 @@ export const LoginForm = ({
     emailAddress: { value: "", isActive: false, isValid: false },
   });
 
+  console.log(!formFields.password.isValid || !formFields.emailAddress.isValid);
   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -102,8 +103,8 @@ export const LoginForm = ({
         </InputFieldWrapper>
         {!formFields.password.isValid && formFields.password.isActive ? (
           <FormErrorContainer>
-            Password must contain 1 number(0-9), 1 uppercase letter, 1 special
-            character and be between 8 and 12 chars long.
+            Password must contain at least: 1 number(0-9), 1 uppercase letter, 1
+            special character and be between 8 and 12 chars long.
           </FormErrorContainer>
         ) : null}
 
@@ -112,6 +113,9 @@ export const LoginForm = ({
           bgcolor="#5dbea3"
           hoverBgColor="#7dcbb5"
           onClick={() => {}}
+          isDisabled={
+            !formFields.emailAddress.isValid || !formFields.password.isValid
+          }
         >
           Login
         </PrimaryBtn>

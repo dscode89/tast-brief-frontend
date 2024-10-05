@@ -5,6 +5,7 @@ export interface PrimaryBtnProps {
   color: string;
   bgcolor: string;
   hoverBgColor: string;
+  isDisabled: boolean;
   onClick: () => void;
 }
 
@@ -13,6 +14,7 @@ export const PrimaryBtn = ({
   color,
   bgcolor,
   hoverBgColor,
+  isDisabled,
   onClick,
 }: PrimaryBtnProps) => {
   return (
@@ -20,7 +22,9 @@ export const PrimaryBtn = ({
       $bgcolor={bgcolor}
       $color={color}
       $hoverBgColor={hoverBgColor}
+      $isDisabled={isDisabled}
       onClick={onClick}
+      disabled={isDisabled}
     >
       {children}
     </PrimaryButton>

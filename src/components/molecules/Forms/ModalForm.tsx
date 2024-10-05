@@ -29,8 +29,8 @@ export const ModalForm = () => {
         <PrimaryBtn
           color="white"
           bgcolor="#5dbea3"
-          hoverBgColor="#7dcbb5
-"
+          hoverBgColor="#7dcbb5"
+          isDisabled={false}
           onClick={() => {}}
         >
           Join Us!

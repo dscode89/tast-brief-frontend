@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const PrimaryButton = styled.button<{
   $bgcolor: string;
   $color: string;
+  $isDisabled: boolean;
   $hoverBgColor: string;
 }>`
   width: 180px;
@@ -18,10 +19,11 @@ export const PrimaryButton = styled.button<{
   border-radius: 5px;
   transition: background-color, transform 0.2s ease;
   border: none;
-
+  opacity: ${(props) => (props.$isDisabled ? "0.5" : "1")};
   &:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    background-color: ${(props) => props.$hoverBgColor};
+    ${(props) =>
+      props.$isDisabled
+        ? null
+        : `transform: scale(1.1); background-color: ${props.$bgcolor}; cursor: pointer;`};
   }
 `;
