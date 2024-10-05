@@ -7,7 +7,7 @@ import { countryDialCodes } from "../../../mock-data/countryDialCodes";
 import { dateOfBirthOptions } from "../../../mock-data/dateOfBirthOptions";
 import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
 import { FormLink } from "../../styled/Forms/FormLink";
-import React, { FormEvent, SetStateAction } from "react";
+import React, { FormEvent, SetStateAction, useState } from "react";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
 import { SelectDropDown } from "./SelectDropDown";
 import { PhoneNumberInput } from "./PhoneNumberInput";
@@ -30,6 +30,18 @@ export const RegistrationForm = ({
     setIsLogin(true);
   };
 
+  const [formFields, setFormFields] = useState({
+    firstName: { value: "", isActive: false, isValid: false },
+    lastName: { value: "", isActive: false, isValid: false },
+    password: { value: "", isActive: false, isValid: false },
+    emailAddress: { value: "", isActive: false, isValid: false },
+    dob: { value: "", isActive: false, isValid: false },
+    phoneNumber: { value: "", isActive: false, isValid: false },
+    company: { value: "", isActive: false, isValid: false },
+    role: { value: "", isActive: false, isValid: false },
+    jobTitle: { value: "", isActive: false, isValid: false },
+  });
+
   return (
     <ContentCenteredColumn
       $shouldAnimate={true}
@@ -46,16 +58,34 @@ export const RegistrationForm = ({
         <BorderBottomTextInput
           placeholder="Enter firstname..."
           id="firstName"
+          value={formFields.firstName.value}
+          $isActive={formFields.firstName.isActive}
+          $isValid={formFields.firstName.isValid}
         />
         <FormErrorContainer>Must be this</FormErrorContainer>
-        <BorderBottomTextInput placeholder="Enter lastname..." id="lastName" />
+        <BorderBottomTextInput
+          placeholder="Enter lastname..."
+          id="lastName"
+          value={formFields.lastName.value}
+          $isActive={formFields.lastName.isActive}
+          $isValid={formFields.lastName.isValid}
+        />
         <BorderBottomTextInput
           placeholder="Enter password..."
           type="password"
           id="reg-password"
           autoComplete="false"
+          value={formFields.password.value}
+          $isActive={formFields.password.isActive}
+          $isValid={formFields.password.isValid}
         />
-        <BorderBottomTextInput placeholder="Enter email..." id="reg-email" />
+        <BorderBottomTextInput
+          placeholder="Enter email..."
+          id="reg-email"
+          value={formFields.emailAddress.value}
+          $isActive={formFields.emailAddress.isActive}
+          $isValid={formFields.emailAddress.isValid}
+        />
         <PhoneNumberInput countryDialCodes={countryDialCodes} />
 
         <div
@@ -95,15 +125,23 @@ export const RegistrationForm = ({
           placeholder="Enter company..."
           id="company"
           autoComplete="false"
+          value={formFields.company.value}
+          $isActive={formFields.company.isActive}
+          $isValid={formFields.company.isValid}
         />
         <BorderBottomTextInput
           placeholder="Enter role..."
-          id="role
-        "
+          id="role"
+          value={formFields.role.value}
+          $isActive={formFields.role.isActive}
+          $isValid={formFields.role.isValid}
         />
         <BorderBottomTextInput
           placeholder="Enter job title..."
           id="job-title"
+          value={formFields.jobTitle.value}
+          $isActive={formFields.jobTitle.isActive}
+          $isValid={formFields.jobTitle.isValid}
         />
         <PrimaryBtn
           onClick={() => {}}

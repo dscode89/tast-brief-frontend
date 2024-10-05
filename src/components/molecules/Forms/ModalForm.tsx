@@ -1,6 +1,13 @@
+import { useState } from "react";
 import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
+import { BorderBottomTextInput } from "../../styled/Forms/BorderBottomTextInput";
 
 export const ModalForm = () => {
+  const [email, setEmail] = useState({
+    value: "",
+    isActive: false,
+    isValid: false,
+  });
   return (
     <form style={{ width: "90%", padding: "0.35em" }}>
       <fieldset
@@ -14,19 +21,10 @@ export const ModalForm = () => {
         }}
       >
         <legend>Email Address</legend>
-        <input
-          type="text"
-          placeholder="Enter Email Here..."
-          style={{
-            height: "40px",
-            width: "90%",
-            marginBottom: "1.2rem",
-            border: "none",
-            borderBottom: "1px solid #5dbea3",
-            outline: "none",
-            fontSize: "1.2rem",
-            padding: "0.25em",
-          }}
+        <BorderBottomTextInput
+          placeholder="Enter Email..."
+          $isActive={email.isActive}
+          $isValid={email.isValid}
         />
         <PrimaryBtn
           color="white"
