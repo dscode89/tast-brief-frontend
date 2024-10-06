@@ -11,8 +11,9 @@ export const ErrorContainer = styled.div`
   font-size: 0.8rem;
   font-weight: 600;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: start;
   justify-content: center;
-  max-width: 90%;
+  max-width: 100%;
 `;

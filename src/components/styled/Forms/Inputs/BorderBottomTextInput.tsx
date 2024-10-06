@@ -4,9 +4,8 @@ export const BorderBottomTextInput = styled.input<{
   $isValid: boolean;
   $isActive: boolean;
 }>`
-  height: 40px;
-  width: 90%;
-  margin-bottom: 0.8em;
+  height: 30px;
+  width: 100%;
   border: none;
   position: relative;
   border-bottom: 2px solid

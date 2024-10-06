@@ -19,7 +19,7 @@ export const PrimaryButton = styled.button<{
   border-radius: 5px;
   transition: background-color, transform 0.2s ease;
   border: none;
-  opacity: ${(props) => (props.$isDisabled ? "0.5" : "1")};
+  opacity: ${(props) => (props.$isDisabled ? "0.3" : "1")};
   &:hover {
     ${(props) =>
       props.$isDisabled

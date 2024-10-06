@@ -38,6 +38,7 @@ export const ContentCenteredColumn = styled.div<{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
   transition: transform, opacity 1s ease-in-out;
   ${(props) =>
     props.$shouldAnimate

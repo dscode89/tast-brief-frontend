@@ -8,7 +8,7 @@ export const VerticalFormWrapper = styled.form`
   flex-direction: column;
   width: 55%;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   background-color: #ffffff;
 `;

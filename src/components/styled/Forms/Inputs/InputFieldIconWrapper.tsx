@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const InputFieldIconWrapper = styled.p`
+export const InputFieldIconWrapper = styled.p<{ $color: string }>`
   position: absolute;
-  top: 10px;
+  top: 25px;
   right: 20px;
   transform: rotate(10deg);
-  color: #5dbea3;
+  color: ${(props) => props.$color};
 `;
