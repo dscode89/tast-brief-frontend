@@ -21,6 +21,7 @@ export const InputWithLabel = ({
   onChange,
   children,
 }: InputWithLabelProps) => {
+  console.log(inputId, labelText);
   return (
     <div
       style={{
@@ -36,12 +37,13 @@ export const InputWithLabel = ({
       >
         {labelText}
       </label>
-      {inputId === "password" ? (
+      {labelText === "Password" ? (
         <BorderBottomTextInput
           required={isRequired}
           $isActive={isActive}
           $isValid={isValid}
           id={inputId}
+          type="password"
           onChange={onChange}
         />
       ) : (
