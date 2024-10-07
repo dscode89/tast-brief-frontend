@@ -22,6 +22,7 @@ export const PrimaryButtonWithModal = ({
       <PrimaryBtn
         color={textColor}
         bgcolor={bgcolor}
+        isDisabled={false}
         hoverBgColor=""
         onClick={() => {
           setModalIsActive((current) => !current);

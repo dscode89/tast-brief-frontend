@@ -11,6 +11,8 @@ import regexPatterns from "../../../utils/regexPatterns";
 import { FormErrorContainer } from "../Errors/FormErrorContainer";
 import { InputFieldIconWrapper } from "../../styled/Forms/Inputs/InputFieldIconWrapper";
 import { InputFieldWrapper } from "../../styled/Forms/Inputs/InputFieldWrapper";
+import { InputWithLabel } from "./InputWithLabel";
+import { ErrorMessage } from "../../atoms/Errors/ErrorMessage";
 
 export const LoginForm = ({
   setIsLogin,
@@ -19,10 +21,10 @@ export const LoginForm = ({
 }: SignInFormProps) => {
   const [formFields, setFormFields] = useState({
     password: { value: "", isActive: false, isValid: false },
-    emailAddress: { value: "", isActive: false, isValid: false },
+    email: { value: "", isActive: false, isValid: false },
   });
 
-  console.log(!formFields.password.isValid || !formFields.emailAddress.isValid);
+  console.log(!formFields.password.isValid || !formFields.email.isValid);
   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -30,29 +32,18 @@ export const LoginForm = ({
   const handleLoginFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
-    if (e.target.id === "log-email") {
-      setFormFields((current) => {
-        return {
-          ...current,
-          emailAddress: {
-            isActive: e.target.value ? true : false,
-            value: e.target.value,
-            isValid: regexPatterns.email.test(e.target.value),
-          },
-        };
-      });
-    } else if (e.target.id === "log-password") {
-      setFormFields((current) => {
-        return {
-          ...current,
-          password: {
-            isActive: e.target.value ? true : false,
-            value: e.target.value,
-            isValid: regexPatterns.password.test(e.target.value),
-          },
-        };
-      });
-    }
+    const specificInput = e.target.id.split("-")[1];
+
+    setFormFields((current) => {
+      return {
+        ...current,
+        [specificInput]: {
+          isActive: e.target.value ? true : false,
+          value: e.target.value,
+          isValid: regexPatterns[specificInput].test(e.target.value),
+        },
+      };
+    });
   };
 
   return (
@@ -68,44 +59,60 @@ export const LoginForm = ({
         <HeadingTertiary fontSizeRem={1.3} color="">
           Enter Login Details
         </HeadingTertiary>
-        <InputFieldWrapper>
-          <BorderBottomTextInput
-            onChange={handleLoginFormChange}
-            placeholder="Enter Email..."
-            id="log-email"
-            value={formFields.emailAddress.value}
-            $isActive={formFields.emailAddress.isActive}
-            $isValid={formFields.emailAddress.isValid}
-          />
 
-          {formFields.emailAddress.isValid ? (
-            <InputFieldIconWrapper>&#10003;</InputFieldIconWrapper>
+        <InputWithLabel
+          inputId="log-email"
+          labelFor="log-email"
+          isRequired
+          onChange={handleLoginFormChange}
+          isActive={formFields.email.isActive}
+          isValid={formFields.email.isValid}
+          labelText="Email"
+        >
+          {formFields.email.isValid ? (
+            <InputFieldIconWrapper $color="#5dbea3">
+              &#10003;
+            </InputFieldIconWrapper>
+          ) : formFields.email.value !== "" ? (
+            <InputFieldIconWrapper $color="#FAA0A0">
+              &#10007;
+            </InputFieldIconWrapper>
           ) : null}
-        </InputFieldWrapper>
-        {!formFields.emailAddress.isValid &&
-        formFields.emailAddress.isActive ? (
-          <FormErrorContainer>Invalid Email Format!</FormErrorContainer>
+        </InputWithLabel>
+        {!formFields.email.isValid && formFields.email.isActive ? (
+          <ErrorMessage>This doesn't look right. Please check!</ErrorMessage>
         ) : null}
 
-        <InputFieldWrapper>
-          <BorderBottomTextInput
-            onChange={handleLoginFormChange}
-            placeholder="Enter Password..."
-            type="password"
-            id="log-password"
-            value={formFields.password.value}
-            $isActive={formFields.password.isActive}
-            $isValid={formFields.password.isValid}
-          />
+        <InputWithLabel
+          inputId="log-password"
+          labelFor="log-password"
+          isRequired
+          onChange={handleLoginFormChange}
+          isActive={formFields.password.isActive}
+          isValid={formFields.password.isValid}
+          labelText="Password"
+        >
           {formFields.password.isValid ? (
-            <InputFieldIconWrapper>&#10003;</InputFieldIconWrapper>
+            <InputFieldIconWrapper $color="#5dbea3">
+              &#10003;
+            </InputFieldIconWrapper>
+          ) : formFields.password.value !== "" ? (
+            <InputFieldIconWrapper $color="#FAA0A0">
+              &#10007;
+            </InputFieldIconWrapper>
           ) : null}
-        </InputFieldWrapper>
+        </InputWithLabel>
         {!formFields.password.isValid && formFields.password.isActive ? (
-          <FormErrorContainer>
-            Password must contain at least: 1 number(0-9), 1 uppercase letter, 1
-            special character and be between 8 and 12 chars long.
-          </FormErrorContainer>
+          <>
+            <ErrorMessage>
+              Must contain an uppercas and lowercase letter. No spaces.
+            </ErrorMessage>
+            <ErrorMessage>Must contain a number.</ErrorMessage>
+            <ErrorMessage>Must contain a special character.</ErrorMessage>
+            <ErrorMessage>
+              Minimum 8 characters, Maximum 12 characters.
+            </ErrorMessage>
+          </>
         ) : null}
 
         <PrimaryBtn
@@ -113,9 +120,7 @@ export const LoginForm = ({
           bgcolor="#5dbea3"
           hoverBgColor="#7dcbb5"
           onClick={() => {}}
-          isDisabled={
-            !formFields.emailAddress.isValid || !formFields.password.isValid
-          }
+          isDisabled={!formFields.email.isValid || !formFields.password.isValid}
         >
           Login
         </PrimaryBtn>
