@@ -14,6 +14,7 @@ import { InputFieldIconWrapper } from "../../styled/Forms/Inputs/InputFieldIconW
 import regexPatterns from "../../../utils/regexPatterns";
 import { InputWithLabel } from "./InputWithLabel";
 import { ErrorMessage } from "../../atoms/Errors/ErrorMessage";
+import { FormFieldInputs } from "../../../utils/types";
 
 export interface SignInFormProps {}
 
@@ -44,7 +45,7 @@ export const RegistrationForm = () => {
     });
   };
 
-  const [formFields, setFormFields] = useState({
+  const [formFields, setFormFields] = useState<FormFieldInputs>({
     fullName: { value: "", isActive: false, isValid: false },
     password: { value: "", isActive: false, isValid: false },
     email: { value: "", isActive: false, isValid: false },
@@ -127,7 +128,11 @@ export const RegistrationForm = () => {
           </>
         ) : null}
 
-        <PhoneNumberInput countryDialCodes={countryDialCodes} />
+        <PhoneNumberInput
+          countryDialCodes={countryDialCodes}
+          setFormFields={setFormFields}
+          numberDetails={formFields.phoneNumber}
+        />
 
         <div
           style={{
@@ -146,17 +151,18 @@ export const RegistrationForm = () => {
           <div
             style={{
               display: "flex",
-
               width: "100%",
             }}
           >
             <SelectDropDown
+              onChange={() => {}}
               dropDownName="date"
               options={dateOfBirthOptions.days}
               optionText="day"
               optionValue="day"
             />
             <SelectDropDown
+              onChange={() => {}}
               dropDownName="month"
               options={dateOfBirthOptions.months}
               optionText="month"
@@ -164,6 +170,7 @@ export const RegistrationForm = () => {
             />
 
             <SelectDropDown
+              onChange={() => {}}
               dropDownName="date"
               options={dateOfBirthOptions.years}
               optionText="year"

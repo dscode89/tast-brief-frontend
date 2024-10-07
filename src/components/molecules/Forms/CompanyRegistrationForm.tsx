@@ -2,11 +2,18 @@ import { ContentCenteredColumn } from "../../styled/containers/ContentCenteredCo
 import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
 import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import regexPatterns from "../../../utils/regexPatterns";
 import { InputWithLabel } from "./InputWithLabel";
 import { InputFieldIconWrapper } from "../../styled/Forms/Inputs/InputFieldIconWrapper";
 import { ErrorMessage } from "../../atoms/Errors/ErrorMessage";
+import { PhoneNumberInput } from "./PhoneNumberInput";
+import { countryDialCodes } from "../../../mock-data/countryDialCodes";
+import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
+import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
+import { SelectDropDown } from "./SelectDropDown";
+
+import { FormFieldInputs } from "../../../utils/types";
 
 export const CompanyRegistrationForm = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -35,7 +42,7 @@ export const CompanyRegistrationForm = () => {
     });
   };
 
-  const [formFields, setFormFields] = useState({
+  const [formFields, setFormFields] = useState<FormFieldInputs>({
     companyName: { value: "", isActive: false, isValid: false },
     password: { value: "", isActive: false, isValid: false },
     email: { value: "", isActive: false, isValid: false },
@@ -45,6 +52,14 @@ export const CompanyRegistrationForm = () => {
     addressPostcode: { value: "", isActive: false, isValid: false },
   });
 
+  const allFieldsValid =
+    formFields.email.isValid &&
+    formFields.password.isValid &&
+    formFields.addressFirstLine.isValid &&
+    formFields.addressSecondLine.isValid &&
+    formFields.addressPostcode.isValid &&
+    formFields.companyName.isValid &&
+    formFields.phoneNumber;
   return (
     <ContentCenteredColumn
       $shouldAnimate={true}
@@ -111,6 +126,143 @@ export const CompanyRegistrationForm = () => {
             </ErrorMessage>
           </>
         ) : null}
+
+        <PhoneNumberInput
+          countryDialCodes={countryDialCodes}
+          numberDetails={formFields.phoneNumber}
+          setFormFields={setFormFields}
+        />
+
+        <InputWithLabel
+          inputId="reg-addressFirstLine"
+          labelFor="reg-addressFirstLine"
+          isRequired
+          onChange={handleRegistrationFormChange}
+          isActive={formFields.addressFirstLine.isActive}
+          isValid={formFields.addressFirstLine.isValid}
+          labelText="Address Line 1"
+        >
+          {formFields.companyName.isValid ? (
+            <InputFieldIconWrapper $color="#5dbea3">
+              &#10003;
+            </InputFieldIconWrapper>
+          ) : formFields.companyName.value !== "" ? (
+            <InputFieldIconWrapper $color="#FAA0A0">
+              &#10007;
+            </InputFieldIconWrapper>
+          ) : null}
+        </InputWithLabel>
+        {!formFields.addressFirstLine.isValid &&
+        formFields.addressFirstLine.isActive ? (
+          <>
+            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
+            <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
+          </>
+        ) : null}
+
+        <InputWithLabel
+          inputId="reg-addressSecondLine"
+          labelFor="reg-addressSecondLine"
+          isRequired
+          onChange={handleRegistrationFormChange}
+          isActive={formFields.addressSecondLine.isActive}
+          isValid={formFields.addressSecondLine.isValid}
+          labelText="Address Line 2"
+        >
+          {formFields.addressSecondLine.isValid ? (
+            <InputFieldIconWrapper $color="#5dbea3">
+              &#10003;
+            </InputFieldIconWrapper>
+          ) : formFields.addressSecondLine.value !== "" ? (
+            <InputFieldIconWrapper $color="#FAA0A0">
+              &#10007;
+            </InputFieldIconWrapper>
+          ) : null}
+        </InputWithLabel>
+        {!formFields.addressSecondLine.isValid &&
+        formFields.addressSecondLine.isActive ? (
+          <>
+            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
+            <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
+          </>
+        ) : null}
+
+        <InputWithLabel
+          inputId="reg-addressPostcode"
+          labelFor="reg-addressPostcode"
+          isRequired
+          onChange={handleRegistrationFormChange}
+          isActive={formFields.addressPostcode.isActive}
+          isValid={formFields.addressPostcode.isValid}
+          labelText="Postcode"
+        >
+          {formFields.addressSecondLine.isValid ? (
+            <InputFieldIconWrapper $color="#5dbea3">
+              &#10003;
+            </InputFieldIconWrapper>
+          ) : formFields.addressSecondLine.value !== "" ? (
+            <InputFieldIconWrapper $color="#FAA0A0">
+              &#10007;
+            </InputFieldIconWrapper>
+          ) : null}
+        </InputWithLabel>
+        {!formFields.addressPostcode.isValid &&
+        formFields.addressPostcode.isActive ? (
+          <>
+            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
+            <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
+          </>
+        ) : null}
+
+        <div
+          style={{
+            marginTop: "0.8rem",
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            justifyContent: "space-between",
+            padding: "0.25em",
+          }}
+        >
+          <HeadingQuarternary fontSizeRem={0.7} color="#000000">
+            Choose Plan
+          </HeadingQuarternary>
+
+          <SelectDropDown
+            onChange={() => {}}
+            dropDownName="plans"
+            options={[
+              "Free Trial(30days)",
+              "Bronze - £100p/m",
+              "Silver - £300p/m",
+              "Gold - £500p/m",
+            ]}
+            optionText="plan"
+            optionValue="plan"
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+            marginTop: "0.8rem",
+          }}
+        >
+          <PrimaryBtn
+            color="white"
+            bgcolor="#5dbea3"
+            hoverBgColor="#7dcbb5"
+            onClick={() => {}}
+            isDisabled={
+              !formFields.email.isValid || !formFields.password.isValid
+            }
+          >
+            Submit
+          </PrimaryBtn>
+        </div>
       </VerticalFormWrapper>
     </ContentCenteredColumn>
   );

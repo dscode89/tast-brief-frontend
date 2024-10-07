@@ -5,6 +5,10 @@ interface SelectDropDownProps {
   optionValue: string;
   optionText: string;
   dropDownName: string;
+  isDialCode?: boolean;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
 }
 
 export const SelectDropDown = ({
@@ -12,10 +16,13 @@ export const SelectDropDown = ({
   optionValue,
   optionText,
   dropDownName,
+  isDialCode,
+  onChange,
 }: SelectDropDownProps) => {
   return (
     <>
       <select
+        onChange={onChange}
         name={dropDownName}
         style={{
           backgroundColor: "#FFFFFF",
@@ -25,13 +32,17 @@ export const SelectDropDown = ({
           padding: "0.5em",
           marginRight: "0.5em",
           marginTop: "0.25em",
+          outline: "none",
+          cursor: "pointer",
         }}
       >
         {options.map((option) => {
           if (typeof option === "object") {
             return (
               <option key={uuidv4()} value={optionValue}>
-                {option[optionText]}
+                {isDialCode
+                  ? `${option.area} (${option.code})`
+                  : option[optionText]}
               </option>
             );
           } else {
