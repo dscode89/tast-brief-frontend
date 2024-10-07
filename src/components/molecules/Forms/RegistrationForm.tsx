@@ -15,21 +15,11 @@ import regexPatterns from "../../../utils/regexPatterns";
 import { InputWithLabel } from "./InputWithLabel";
 import { ErrorMessage } from "../../atoms/Errors/ErrorMessage";
 
-export interface SignInFormProps {
-  setIsLogin: React.Dispatch<SetStateAction<boolean>>;
-  setStartAnimation?: React.Dispatch<SetStateAction<boolean>>;
-  setShowModal?: React.Dispatch<SetStateAction<boolean>>;
-  startAnimation?: boolean;
-  showModal?: boolean;
-}
+export interface SignInFormProps {}
 
-export const RegistrationForm = ({
-  setIsLogin,
-  setShowModal,
-}: SignInFormProps) => {
+export const RegistrationForm = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsLogin(true);
   };
 
   const handleRegistrationFormChange = (
@@ -137,28 +127,6 @@ export const RegistrationForm = ({
           </>
         ) : null}
 
-        <InputWithLabel
-          inputId="reg-email"
-          labelFor="reg-email"
-          isRequired
-          onChange={handleRegistrationFormChange}
-          isActive={formFields.email.isActive}
-          isValid={formFields.email.isValid}
-          labelText="Email"
-        >
-          {formFields.email.isValid ? (
-            <InputFieldIconWrapper $color="#5dbea3">
-              &#10003;
-            </InputFieldIconWrapper>
-          ) : formFields.email.value !== "" ? (
-            <InputFieldIconWrapper $color="#FAA0A0">
-              &#10007;
-            </InputFieldIconWrapper>
-          ) : null}
-        </InputWithLabel>
-        {!formFields.email.isValid && formFields.email.isActive ? (
-          <ErrorMessage>This doesn't look right. Please check!</ErrorMessage>
-        ) : null}
         <PhoneNumberInput countryDialCodes={countryDialCodes} />
 
         <div
@@ -178,7 +146,7 @@ export const RegistrationForm = ({
           <div
             style={{
               display: "flex",
-              
+
               width: "100%",
             }}
           >
@@ -204,84 +172,6 @@ export const RegistrationForm = ({
           </div>
         </div>
 
-        <InputWithLabel
-          inputId="reg-company"
-          labelFor="reg-company"
-          isRequired
-          onChange={handleRegistrationFormChange}
-          isActive={formFields.company.isActive}
-          isValid={formFields.company.isValid}
-          labelText="Company"
-        >
-          {formFields.company.isValid ? (
-            <InputFieldIconWrapper $color="#5dbea3">
-              &#10003;
-            </InputFieldIconWrapper>
-          ) : formFields.company.value !== "" ? (
-            <InputFieldIconWrapper $color="#FAA0A0">
-              &#10007;
-            </InputFieldIconWrapper>
-          ) : null}
-        </InputWithLabel>
-        {!formFields.company.isValid && formFields.company.isActive ? (
-          <>
-            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
-            <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
-          </>
-        ) : null}
-
-        <InputWithLabel
-          inputId="reg-jobTitle"
-          labelFor="reg-jobTitle"
-          isRequired
-          onChange={handleRegistrationFormChange}
-          isActive={formFields.jobTitle.isActive}
-          isValid={formFields.jobTitle.isValid}
-          labelText="Job Title"
-        >
-          {formFields.jobTitle.isValid ? (
-            <InputFieldIconWrapper $color="#5dbea3">
-              &#10003;
-            </InputFieldIconWrapper>
-          ) : formFields.jobTitle.value !== "" ? (
-            <InputFieldIconWrapper $color="#FAA0A0">
-              &#10007;
-            </InputFieldIconWrapper>
-          ) : null}
-        </InputWithLabel>
-        {!formFields.jobTitle.isValid && formFields.jobTitle.isActive ? (
-          <>
-            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
-            <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
-          </>
-        ) : null}
-
-        <InputWithLabel
-          inputId="reg-role"
-          labelFor="reg-role"
-          isRequired
-          onChange={handleRegistrationFormChange}
-          isActive={formFields.role.isActive}
-          isValid={formFields.role.isValid}
-          labelText="Role"
-        >
-          {formFields.role.isValid ? (
-            <InputFieldIconWrapper $color="#5dbea3">
-              &#10003;
-            </InputFieldIconWrapper>
-          ) : formFields.role.value !== "" ? (
-            <InputFieldIconWrapper $color="#FAA0A0">
-              &#10007;
-            </InputFieldIconWrapper>
-          ) : null}
-        </InputWithLabel>
-        {!formFields.role.isValid && formFields.role.isActive ? (
-          <>
-            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
-            <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
-          </>
-        ) : null}
-
         <div
           style={{
             width: "100%",
@@ -301,13 +191,7 @@ export const RegistrationForm = ({
           </PrimaryBtn>
         </div>
       </VerticalFormWrapper>
-      <FormLink
-        $color="#5dbea3"
-        $fontSize={1.1}
-        onClick={() => {
-          setShowModal!(true);
-        }}
-      >
+      <FormLink $color="#5dbea3" $fontSize={1.1} onClick={() => {}}>
         Need Help?
       </FormLink>
     </ContentCenteredColumn>

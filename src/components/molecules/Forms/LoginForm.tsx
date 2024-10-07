@@ -1,24 +1,16 @@
 import { ContentCenteredColumn } from "../../styled/containers/ContentCenteredColumn";
-import { BorderBottomTextInput } from "../../styled/Forms/Inputs/BorderBottomTextInput";
 import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
 import { FormLink } from "../../styled/Forms/FormLink";
 import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
 import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
-import { SignInFormProps } from "./RegistrationForm";
 import { useState } from "react";
 import regexPatterns from "../../../utils/regexPatterns";
-import { FormErrorContainer } from "../Errors/FormErrorContainer";
 import { InputFieldIconWrapper } from "../../styled/Forms/Inputs/InputFieldIconWrapper";
-import { InputFieldWrapper } from "../../styled/Forms/Inputs/InputFieldWrapper";
 import { InputWithLabel } from "./InputWithLabel";
 import { ErrorMessage } from "../../atoms/Errors/ErrorMessage";
 
-export const LoginForm = ({
-  setIsLogin,
-  startAnimation,
-  setStartAnimation,
-}: SignInFormProps) => {
+export const LoginForm = () => {
   const [formFields, setFormFields] = useState({
     password: { value: "", isActive: false, isValid: false },
     email: { value: "", isActive: false, isValid: false },
@@ -48,7 +40,7 @@ export const LoginForm = ({
 
   return (
     <ContentCenteredColumn
-      $shouldAnimate={startAnimation!}
+      $shouldAnimate={false}
       $animateDirection="right"
       style={{
         backgroundImage: `url(${backgroundImg})`,
@@ -114,35 +106,38 @@ export const LoginForm = ({
             </ErrorMessage>
           </>
         ) : null}
-
-        <PrimaryBtn
-          color="white"
-          bgcolor="#5dbea3"
-          hoverBgColor="#7dcbb5"
-          onClick={() => {}}
-          isDisabled={!formFields.email.isValid || !formFields.password.isValid}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+            marginTop: "0.8rem",
+          }}
         >
-          Login
-        </PrimaryBtn>
-        <label>
-          Remember me?
-          <input
-            type="checkbox"
-            style={{ marginLeft: "0.2em" }}
-            id="log-checkbox"
-          />
-        </label>
+          <PrimaryBtn
+            color="white"
+            bgcolor="#5dbea3"
+            hoverBgColor="#7dcbb5"
+            onClick={() => {}}
+            isDisabled={
+              !formFields.email.isValid || !formFields.password.isValid
+            }
+          >
+            Login
+          </PrimaryBtn>
+          <label>
+            Remember me
+            <input
+              type="checkbox"
+              style={{ marginLeft: "0.2em" }}
+              id="log-checkbox"
+            />
+          </label>
+        </div>
       </VerticalFormWrapper>
-
-      <FormLink
-        $color="#5dbea3"
-        $fontSize={1.1}
-        onClick={() => {
-          setIsLogin(false);
-          setStartAnimation!(true);
-        }}
-      >
-        Not registered? Click here
+      <FormLink href="/login/register/company" $color="#5dbea3" $fontSize={1.1}>
+        Register your company
       </FormLink>
       <FormLink href="/password-reset" $color="#5dbea3" $fontSize={1.1}>
         Forgot your password?

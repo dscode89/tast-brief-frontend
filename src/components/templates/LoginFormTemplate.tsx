@@ -5,12 +5,14 @@ import img1 from "../../assets/rotating1.jpg";
 import img2 from "../../assets/rotating2.jpg";
 import img3 from "../../assets/rotating3.jpg";
 
-import { SignInFormSection } from "../organisms/Form/SignInFormSection";
+interface FormTemplateProps {
+  children: React.ReactNode;
+}
 
-export const LoginFormTemplate = () => {
+export const FormTemplate = ({ children }: FormTemplateProps) => {
   return (
     <TwoColumnedLayout>
-      <SignInFormSection />
+      {children}
       <MultiBackgroundImageBlock images={[img1, img2, img3]} />
     </TwoColumnedLayout>
   );
