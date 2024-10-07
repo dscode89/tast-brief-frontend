@@ -12,6 +12,6 @@ export const BorderBottomTextInput = styled.input<{
     ${(props) =>
       props.$isActive ? (props.$isValid ? "#5dbea3" : "#FAA0A0") : "#808080"};
   outline: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 0.25em;
 `;

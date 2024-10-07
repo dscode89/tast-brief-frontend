@@ -15,7 +15,18 @@ export const SelectDropDown = ({
 }: SelectDropDownProps) => {
   return (
     <>
-      <select name={dropDownName}>
+      <select
+        name={dropDownName}
+        style={{
+          backgroundColor: "#FFFFFF",
+          color: "#5dbea3",
+          fontWeight: "600",
+          border: "2px solid #5dbea3",
+          padding: "0.5em",
+          marginRight: "0.5em",
+          marginTop: "0.25em",
+        }}
+      >
         {options.map((option) => {
           if (typeof option === "object") {
             return (

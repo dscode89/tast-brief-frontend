@@ -15,7 +15,7 @@ export const FormErrorContainer = ({ children }: FormErrorContainerProps) => {
           height: "10px",
           transform: "rotate(45deg)",
           position: "absolute",
-          top: -3,
+          top: -2,
           left: 5,
         }}
       ></div>

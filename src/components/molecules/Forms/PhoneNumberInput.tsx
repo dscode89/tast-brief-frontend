@@ -19,10 +19,12 @@ export const PhoneNumberInput = ({ countryDialCodes }: PhoneNumberProps) => {
         position: "relative",
       }}
     >
-      <HeadingQuarternary fontSizeRem={0.7} color="#000000">
+      <label
+        htmlFor="reg-phoneNumber"
+        style={{ fontSize: "0.7rem", fontWeight: "700", marginTop: "0.8rem" }}
+      >
         Contact Number
-      </HeadingQuarternary>
-
+      </label>
       <div style={{ display: "flex" }}>
         <SelectDropDown
           dropDownName="dial-codes"
@@ -30,6 +32,7 @@ export const PhoneNumberInput = ({ countryDialCodes }: PhoneNumberProps) => {
           optionValue="code"
           optionText="code"
         />
+
         <input
           type="text"
           id="reg-phoneNumber"
@@ -39,7 +42,6 @@ export const PhoneNumberInput = ({ countryDialCodes }: PhoneNumberProps) => {
             outline: "none",
             border: "1px solid #5dbea3",
             borderRadius: "2px",
-            height: "25px",
           }}
         />
       </div>

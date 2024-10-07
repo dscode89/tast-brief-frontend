@@ -169,13 +169,19 @@ export const RegistrationForm = ({
             justifyContent: "space-between",
             alignItems: "start",
             position: "relative",
-            margin: "25px 5px",
+            marginTop: "0.8rem",
           }}
         >
           <HeadingQuarternary fontSizeRem={0.7} color="#000000">
             Date Of Birth - DD/MM/YYYY
           </HeadingQuarternary>
-          <div style={{ display: "flex" }}>
+          <div
+            style={{
+              display: "flex",
+              
+              width: "100%",
+            }}
+          >
             <SelectDropDown
               dropDownName="date"
               options={dateOfBirthOptions.days}
