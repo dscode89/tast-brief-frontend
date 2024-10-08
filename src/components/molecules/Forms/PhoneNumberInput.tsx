@@ -1,7 +1,9 @@
 import { SelectDropDown } from "./SelectDropDown";
-import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
-import { SetStateAction, useState } from "react";
 import { FormFieldInputs } from "../../../utils/types";
+import regexPatterns from "../../../utils/regexPatterns";
+import { useState } from "react";
+import { SelectElementCompanionInput } from "../../styled/Forms/Inputs/SelectCompanionInput";
+import { RequiredInputLabel } from "../../styled/Typography/RequiredInputLabel";
 
 interface PhoneNumberProps {
   countryDialCodes: {
@@ -28,13 +30,16 @@ export const PhoneNumberInput = ({
   const [dialCode, setDialCode] = useState("07");
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const completeNumber = dialCode + e.target.value;
     setFormFields((currentFields) => {
       return {
         ...currentFields,
         phoneNumber: {
           value: e.target.value,
-          isActive: true,
-          isValid: true,
+          isActive: e.target.value ? true : false,
+          isValid:
+            regexPatterns.phoneNumber.test(e.target.value) &&
+            completeNumber.length === 11,
         },
       };
     });
@@ -50,12 +55,11 @@ export const PhoneNumberInput = ({
         position: "relative",
       }}
     >
-      <label
+      <RequiredInputLabel
         htmlFor="reg-phoneNumber"
-        style={{ fontSize: "0.7rem", fontWeight: "700", marginTop: "0.8rem" }}
-      >
-        Contact Number(UK Numbers Only)
-      </label>
+        labelText="Contact Number(UK Numbers Only)"
+      />
+
       <div
         style={{
           display: "flex",
@@ -63,6 +67,15 @@ export const PhoneNumberInput = ({
         }}
       >
         <SelectDropDown
+          id="reg-phoneNumberDialCode"
+          isValid={
+            numberDetails.isActive
+              ? numberDetails.isValid
+                ? true
+                : false
+              : true
+          }
+          value={dialCode}
           onChange={(e) => {
             setDialCode(e.target.value);
           }}
@@ -73,22 +86,13 @@ export const PhoneNumberInput = ({
           isDialCode
         />
 
-        <input
+        <SelectElementCompanionInput
           onChange={handleNumberChange}
           value={numberDetails.value}
           type="text"
           id="reg-phoneNumber"
-          style={{
-            width: "100%",
-            marginLeft: "4px",
-            outline: "none",
-            border: "2px solid #5dbea3",
-            borderRadius: "2px",
-            color: "#5dbea3",
-            height: "34.33px",
-            padding: "0 0.25em",
-            fontWeight: "600",
-          }}
+          $isActive={numberDetails.isActive}
+          $isValid={numberDetails.isValid}
         />
       </div>
     </div>

@@ -6,7 +6,7 @@ import { countryDialCodes } from "../../../mock-data/countryDialCodes";
 import { dateOfBirthOptions } from "../../../mock-data/dateOfBirthOptions";
 import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
 import { FormLink } from "../../styled/Forms/FormLink";
-import React, { FormEvent, SetStateAction, useState } from "react";
+import React, { FormEvent, SetStateAction, useEffect, useState } from "react";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
 import { SelectDropDown } from "./SelectDropDown";
 import { PhoneNumberInput } from "./PhoneNumberInput";
@@ -15,6 +15,7 @@ import regexPatterns from "../../../utils/regexPatterns";
 import { InputWithLabel } from "./InputWithLabel";
 import { ErrorMessage } from "../../atoms/Errors/ErrorMessage";
 import { FormFieldInputs } from "../../../utils/types";
+import { DateOfBirthInput } from "./DateOfBirthInput";
 
 export interface SignInFormProps {}
 
@@ -23,38 +24,56 @@ export const RegistrationForm = () => {
     e.preventDefault();
   };
 
+  const [formFields, setFormFields] = useState<FormFieldInputs>({
+    fullName: { value: "", isActive: false, isValid: false },
+    password: { value: "", isActive: false, isValid: false },
+    phoneNumber: { value: "", isActive: false, isValid: false },
+    dateOfBirth: { value: "", isActive: false, isValid: false },
+  });
+  const [submissionIsDisabled, setSubmissionIsDisabled] = useState(true);
+
+  useEffect(() => {
+    if (
+      formFields.password.isValid &&
+      formFields.phoneNumber.isValid &&
+      formFields.fullName.isValid &&
+      formFields.dateOfBirth.isValid
+    ) {
+      setSubmissionIsDisabled(false);
+    } else {
+      setSubmissionIsDisabled(true);
+    }
+  }, [formFields]);
+
   const handleRegistrationFormChange = (
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     e.preventDefault();
     const specificInput = e.target.id.split("-")[1];
     const specificRegex =
       specificInput === "password" || specificInput === "email"
         ? specificInput
-        : "fullName";
+        : "genericTextInput";
 
     setFormFields((current) => {
       return {
         ...current,
         [specificInput]: {
-          isActive: e.target.value ? true : false,
+          isActive:
+            e.target.nodeName === "SELECT"
+              ? true
+              : e.target.value
+              ? true
+              : false,
           value: e.target.value,
-          isValid: regexPatterns[specificRegex].test(e.target.value),
+          isValid:
+            e.target.nodeName === "SELECT"
+              ? true
+              : regexPatterns[specificRegex].test(e.target.value),
         },
       };
     });
   };
-
-  const [formFields, setFormFields] = useState<FormFieldInputs>({
-    fullName: { value: "", isActive: false, isValid: false },
-    password: { value: "", isActive: false, isValid: false },
-    email: { value: "", isActive: false, isValid: false },
-    dob: { value: "", isActive: false, isValid: false },
-    phoneNumber: { value: "", isActive: false, isValid: false },
-    company: { value: "", isActive: false, isValid: false },
-    role: { value: "", isActive: false, isValid: false },
-    jobTitle: { value: "", isActive: false, isValid: false },
-  });
 
   return (
     <ContentCenteredColumn
@@ -91,7 +110,8 @@ export const RegistrationForm = () => {
         </InputWithLabel>
         {!formFields.fullName.isValid && formFields.fullName.isActive ? (
           <>
-            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
+            <ErrorMessage>Cannot start with a space.</ErrorMessage>
+            <ErrorMessage>Minimum of 5 characters.</ErrorMessage>
             <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
           </>
         ) : null}
@@ -145,38 +165,13 @@ export const RegistrationForm = () => {
             marginTop: "0.8rem",
           }}
         >
-          <HeadingQuarternary fontSizeRem={0.7} color="#000000">
-            Date Of Birth - DD/MM/YYYY
-          </HeadingQuarternary>
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-            }}
-          >
-            <SelectDropDown
-              onChange={() => {}}
-              dropDownName="date"
-              options={dateOfBirthOptions.days}
-              optionText="day"
-              optionValue="day"
-            />
-            <SelectDropDown
-              onChange={() => {}}
-              dropDownName="month"
-              options={dateOfBirthOptions.months}
-              optionText="month"
-              optionValue="month"
-            />
-
-            <SelectDropDown
-              onChange={() => {}}
-              dropDownName="date"
-              options={dateOfBirthOptions.years}
-              optionText="year"
-              optionValue="year"
-            />
-          </div>
+          <DateOfBirthInput setFormFields={setFormFields} />
+          {!formFields.dateOfBirth.isValid &&
+          formFields.dateOfBirth.isActive ? (
+            <>
+              <ErrorMessage>Must be over the age of 16.</ErrorMessage>
+            </>
+          ) : null}
         </div>
 
         <div
@@ -192,7 +187,7 @@ export const RegistrationForm = () => {
             color="white"
             bgcolor="#5dbea3"
             hoverBgColor="#7dcbb5"
-            isDisabled={false}
+            isDisabled={submissionIsDisabled}
           >
             Submit
           </PrimaryBtn>
@@ -204,3 +199,6 @@ export const RegistrationForm = () => {
     </ContentCenteredColumn>
   );
 };
+
+// GO OVER ALL USER INTERACTIONS WITH FORMS AND THEN MOVE ONTO REPSONSIVENESS FOR ALL FORMS
+

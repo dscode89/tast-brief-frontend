@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import { StyledSelectDropdownBox } from "../../styled/Forms/StyledSelectDropdownBox";
 
 interface SelectDropDownProps {
   options: { [key: string]: string | number }[] | string[] | number[];
@@ -6,40 +7,38 @@ interface SelectDropDownProps {
   optionText: string;
   dropDownName: string;
   isDialCode?: boolean;
+  value: string | number;
+  isValid: boolean;
+  id: string;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => void;
 }
 
 export const SelectDropDown = ({
+  isValid,
   options,
   optionValue,
   optionText,
   dropDownName,
   isDialCode,
+  value,
+  id,
   onChange,
 }: SelectDropDownProps) => {
   return (
     <>
-      <select
+      <StyledSelectDropdownBox
+        value={value}
+        $isValid={isValid}
         onChange={onChange}
         name={dropDownName}
-        style={{
-          backgroundColor: "#FFFFFF",
-          color: "#5dbea3",
-          fontWeight: "600",
-          border: "2px solid #5dbea3",
-          padding: "0.5em",
-          marginRight: "0.5em",
-          marginTop: "0.25em",
-          outline: "none",
-          cursor: "pointer",
-        }}
+        id={id}
       >
         {options.map((option) => {
           if (typeof option === "object") {
             return (
-              <option key={uuidv4()} value={optionValue}>
+              <option key={uuidv4()} value={option[optionValue]}>
                 {isDialCode
                   ? `${option.area} (${option.code})`
                   : option[optionText]}
@@ -49,7 +48,7 @@ export const SelectDropDown = ({
             return <option key={uuidv4()}>{option}</option>;
           }
         })}
-      </select>
+      </StyledSelectDropdownBox>
     </>
   );
 };

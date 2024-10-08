@@ -1,5 +1,5 @@
 const regexPatterns: { [key: string]: RegExp } = {
-  fullName: /^(?=.*[a-zA-Z]).{1,30}$/,
+  genericTextInput: /^[\S]{1}.{4,29}$/,
   phoneNumber: /[0-9]{6,9}/,
   password:
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?&])[A-Za-z0-9@$!%*#?&]{8,12}$/,

@@ -2,7 +2,7 @@ import { ContentCenteredColumn } from "../../styled/containers/ContentCenteredCo
 import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
 import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import regexPatterns from "../../../utils/regexPatterns";
 import { InputWithLabel } from "./InputWithLabel";
 import { InputFieldIconWrapper } from "../../styled/Forms/Inputs/InputFieldIconWrapper";
@@ -12,36 +12,12 @@ import { countryDialCodes } from "../../../mock-data/countryDialCodes";
 import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
 import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
 import { SelectDropDown } from "./SelectDropDown";
-
+import { OppositeEndSpacedRowContainer } from "../../styled/containers/OppositeEndSpacedRowContainer";
 import { FormFieldInputs } from "../../../utils/types";
+import { ContentCenteredRow } from "../../styled/containers/ContentCenteredRow";
+import { FormLink } from "../../styled/Forms/FormLink";
 
 export const CompanyRegistrationForm = () => {
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
-  const handleRegistrationFormChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    e.preventDefault();
-    const specificInput = e.target.id.split("-")[1];
-    const specificRegex =
-      specificInput === "password" || specificInput === "email"
-        ? specificInput
-        : "fullName";
-
-    setFormFields((current) => {
-      return {
-        ...current,
-        [specificInput]: {
-          isActive: e.target.value ? true : false,
-          value: e.target.value,
-          isValid: regexPatterns[specificRegex].test(e.target.value),
-        },
-      };
-    });
-  };
-
   const [formFields, setFormFields] = useState<FormFieldInputs>({
     companyName: { value: "", isActive: false, isValid: false },
     password: { value: "", isActive: false, isValid: false },
@@ -50,16 +26,61 @@ export const CompanyRegistrationForm = () => {
     addressFirstLine: { value: "", isActive: false, isValid: false },
     addressSecondLine: { value: "", isActive: false, isValid: false },
     addressPostcode: { value: "", isActive: false, isValid: false },
+    plan: { value: "Free Trial(30days)", isActive: true, isValid: true },
   });
+  const [submissionIsDisabled, setSubmissionIsDisabled] = useState(true);
 
-  const allFieldsValid =
-    formFields.email.isValid &&
-    formFields.password.isValid &&
-    formFields.addressFirstLine.isValid &&
-    formFields.addressSecondLine.isValid &&
-    formFields.addressPostcode.isValid &&
-    formFields.companyName.isValid &&
-    formFields.phoneNumber;
+  useEffect(() => {
+    if (
+      formFields.companyName.isValid &&
+      formFields.password.isValid &&
+      formFields.email.isValid &&
+      formFields.phoneNumber.isValid &&
+      formFields.addressFirstLine.isValid &&
+      formFields.addressSecondLine.isValid &&
+      formFields.addressPostcode.isValid &&
+      formFields.plan.isValid
+    ) {
+      setSubmissionIsDisabled(false);
+    } else {
+      setSubmissionIsDisabled(true);
+    }
+  }, [formFields]);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  const handleRegistrationFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    e.preventDefault();
+    const specificInput = e.target.id.split("-")[1];
+    const specificRegex =
+      specificInput === "password" || specificInput === "email"
+        ? specificInput
+        : "genericTextInput";
+
+    setFormFields((current) => {
+      return {
+        ...current,
+        [specificInput]: {
+          isActive:
+            e.target.nodeName === "SELECT"
+              ? true
+              : e.target.value
+              ? true
+              : false,
+          value: e.target.value,
+          isValid:
+            e.target.nodeName === "SELECT"
+              ? true
+              : regexPatterns[specificRegex].test(e.target.value),
+        },
+      };
+    });
+  };
+
   return (
     <ContentCenteredColumn
       $shouldAnimate={true}
@@ -69,7 +90,7 @@ export const CompanyRegistrationForm = () => {
         backgroundSize: "cover",
       }}
     >
-      <VerticalFormWrapper>
+      <VerticalFormWrapper onSubmit={handleSubmit}>
         <HeadingTertiary fontSizeRem={1.3} color="">
           Let's get set up!
         </HeadingTertiary>
@@ -95,7 +116,7 @@ export const CompanyRegistrationForm = () => {
         </InputWithLabel>
         {!formFields.companyName.isValid && formFields.companyName.isActive ? (
           <>
-            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
+            <ErrorMessage>Can not start with a space.</ErrorMessage>
             <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
           </>
         ) : null}
@@ -127,11 +148,54 @@ export const CompanyRegistrationForm = () => {
           </>
         ) : null}
 
+        <InputWithLabel
+          inputId="reg-password"
+          labelFor="reg-password"
+          isRequired
+          onChange={handleRegistrationFormChange}
+          isActive={formFields.password.isActive}
+          isValid={formFields.password.isValid}
+          labelText="Password"
+        >
+          {formFields.password.isValid ? (
+            <InputFieldIconWrapper $color="#5dbea3">
+              &#10003;
+            </InputFieldIconWrapper>
+          ) : formFields.password.value !== "" ? (
+            <InputFieldIconWrapper $color="#FAA0A0">
+              &#10007;
+            </InputFieldIconWrapper>
+          ) : null}
+        </InputWithLabel>
+        {!formFields.password.isValid && formFields.password.isActive ? (
+          <>
+            <ErrorMessage>
+              Must contain an uppercas and lowercase letter. No spaces.
+            </ErrorMessage>
+            <ErrorMessage>Must contain a number.</ErrorMessage>
+            <ErrorMessage>Must contain a special character.</ErrorMessage>
+            <ErrorMessage>
+              Minimum 8 characters, Maximum 12 characters.
+            </ErrorMessage>
+          </>
+        ) : null}
+
         <PhoneNumberInput
           countryDialCodes={countryDialCodes}
           numberDetails={formFields.phoneNumber}
           setFormFields={setFormFields}
         />
+        {!formFields.phoneNumber.isValid && formFields.phoneNumber.isActive ? (
+          <>
+            <ErrorMessage>Can only contain numbers.</ErrorMessage>
+            <ErrorMessage>
+              Complete phone number must be 11 digits.
+            </ErrorMessage>
+            <ErrorMessage>
+              Complete phone number can not contain spaces.
+            </ErrorMessage>
+          </>
+        ) : null}
 
         <InputWithLabel
           inputId="reg-addressFirstLine"
@@ -142,11 +206,11 @@ export const CompanyRegistrationForm = () => {
           isValid={formFields.addressFirstLine.isValid}
           labelText="Address Line 1"
         >
-          {formFields.companyName.isValid ? (
+          {formFields.addressFirstLine.isValid ? (
             <InputFieldIconWrapper $color="#5dbea3">
               &#10003;
             </InputFieldIconWrapper>
-          ) : formFields.companyName.value !== "" ? (
+          ) : formFields.addressFirstLine.value !== "" ? (
             <InputFieldIconWrapper $color="#FAA0A0">
               &#10007;
             </InputFieldIconWrapper>
@@ -196,11 +260,11 @@ export const CompanyRegistrationForm = () => {
           isValid={formFields.addressPostcode.isValid}
           labelText="Postcode"
         >
-          {formFields.addressSecondLine.isValid ? (
+          {formFields.addressPostcode.isValid ? (
             <InputFieldIconWrapper $color="#5dbea3">
               &#10003;
             </InputFieldIconWrapper>
-          ) : formFields.addressSecondLine.value !== "" ? (
+          ) : formFields.addressPostcode.value !== "" ? (
             <InputFieldIconWrapper $color="#FAA0A0">
               &#10007;
             </InputFieldIconWrapper>
@@ -214,22 +278,22 @@ export const CompanyRegistrationForm = () => {
           </>
         ) : null}
 
-        <div
-          style={{
-            marginTop: "0.8rem",
-            display: "flex",
-            alignItems: "center",
-            width: "100%",
-            justifyContent: "space-between",
-            padding: "0.25em",
-          }}
-        >
+        <OppositeEndSpacedRowContainer>
           <HeadingQuarternary fontSizeRem={0.7} color="#000000">
             Choose Plan
           </HeadingQuarternary>
 
           <SelectDropDown
-            onChange={() => {}}
+            id="reg-plan"
+            value={formFields.plan.value}
+            isValid={
+              formFields.plan.isActive
+                ? formFields.plan.isValid
+                  ? true
+                  : false
+                : true
+            }
+            onChange={handleRegistrationFormChange}
             dropDownName="plans"
             options={[
               "Free Trial(30days)",
@@ -240,30 +304,22 @@ export const CompanyRegistrationForm = () => {
             optionText="plan"
             optionValue="plan"
           />
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100%",
-            marginTop: "0.8rem",
-          }}
-        >
+        </OppositeEndSpacedRowContainer>
+        <ContentCenteredRow>
           <PrimaryBtn
             color="white"
             bgcolor="#5dbea3"
             hoverBgColor="#7dcbb5"
             onClick={() => {}}
-            isDisabled={
-              !formFields.email.isValid || !formFields.password.isValid
-            }
+            isDisabled={submissionIsDisabled}
           >
             Submit
           </PrimaryBtn>
-        </div>
+        </ContentCenteredRow>
       </VerticalFormWrapper>
+      <FormLink $color="#5dbea3" $fontSize={1.1} onClick={() => {}}>
+        Need Help?
+      </FormLink>
     </ContentCenteredColumn>
   );
 };

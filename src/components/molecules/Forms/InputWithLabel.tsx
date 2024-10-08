@@ -1,4 +1,6 @@
 import { BorderBottomTextInput } from "../../styled/Forms/Inputs/BorderBottomTextInput";
+import { RequiredInputLabel } from "../../styled/Typography/RequiredInputLabel";
+import { GenericLabel } from "../../styled/Forms/GenericLabel";
 
 export interface InputWithLabelProps {
   isActive: boolean;
@@ -21,7 +23,6 @@ export const InputWithLabel = ({
   onChange,
   children,
 }: InputWithLabelProps) => {
-  console.log(inputId, labelText);
   return (
     <div
       style={{
@@ -31,12 +32,12 @@ export const InputWithLabel = ({
         position: "relative",
       }}
     >
-      <label
-        htmlFor={labelFor}
-        style={{ fontSize: "0.7rem", fontWeight: "700", marginTop: "0.8rem" }}
-      >
-        {labelText}
-      </label>
+      {isRequired ? (
+        <RequiredInputLabel htmlFor={labelFor} labelText={labelText} />
+      ) : (
+        <GenericLabel htmlFor={labelFor}>{labelText}</GenericLabel>
+      )}
+
       {labelText === "Password" ? (
         <BorderBottomTextInput
           required={isRequired}

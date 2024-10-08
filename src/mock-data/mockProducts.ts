@@ -1,8 +1,6 @@
 import fakeProductImg from "../assets/fakeProduct.png";
 import { ProductBlockProps } from "../components/molecules/Containers/ProductColumn";
 
-console.log(fakeProductImg);
-
 export const mockProducts: ProductBlockProps[] = [
   {
     title: "Project Brief Generation",
