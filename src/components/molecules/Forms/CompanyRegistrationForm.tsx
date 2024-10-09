@@ -3,7 +3,6 @@ import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
 import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
 import { FormEvent, useEffect, useState } from "react";
-import regexPatterns from "../../../utils/regexPatterns";
 import { InputWithLabel } from "./InputWithLabel";
 import { InputFieldIconWrapper } from "../../styled/Forms/Inputs/InputFieldIconWrapper";
 import { ErrorMessage } from "../../atoms/Errors/ErrorMessage";
@@ -16,6 +15,7 @@ import { OppositeEndSpacedRowContainer } from "../../styled/containers/OppositeE
 import { FormFieldInputs } from "../../../utils/types";
 import { ContentCenteredRow } from "../../styled/containers/ContentCenteredRow";
 import { FormLink } from "../../styled/Forms/FormLink";
+import { handleRegistrationFormChange } from "../../../utils/formHandlers/formHandlers";
 
 export const CompanyRegistrationForm = () => {
   const [formFields, setFormFields] = useState<FormFieldInputs>({
@@ -51,36 +51,6 @@ export const CompanyRegistrationForm = () => {
     e.preventDefault();
   };
 
-  const handleRegistrationFormChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    e.preventDefault();
-    const specificInput = e.target.id.split("-")[1];
-    const specificRegex =
-      specificInput === "password" || specificInput === "email"
-        ? specificInput
-        : "genericTextInput";
-
-    setFormFields((current) => {
-      return {
-        ...current,
-        [specificInput]: {
-          isActive:
-            e.target.nodeName === "SELECT"
-              ? true
-              : e.target.value
-              ? true
-              : false,
-          value: e.target.value,
-          isValid:
-            e.target.nodeName === "SELECT"
-              ? true
-              : regexPatterns[specificRegex].test(e.target.value),
-        },
-      };
-    });
-  };
-
   return (
     <ContentCenteredColumn
       $shouldAnimate={true}
@@ -99,7 +69,9 @@ export const CompanyRegistrationForm = () => {
           inputId="reg-companyName"
           labelFor="reg-companyName"
           isRequired
-          onChange={handleRegistrationFormChange}
+          onChange={(e) => {
+            handleRegistrationFormChange(e, setFormFields);
+          }}
           isActive={formFields.companyName.isActive}
           isValid={formFields.companyName.isValid}
           labelText="Company Name"
@@ -117,6 +89,7 @@ export const CompanyRegistrationForm = () => {
         {!formFields.companyName.isValid && formFields.companyName.isActive ? (
           <>
             <ErrorMessage>Can not start with a space.</ErrorMessage>
+            <ErrorMessage>Minimum of 5 characters.</ErrorMessage>
             <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
           </>
         ) : null}
@@ -125,7 +98,9 @@ export const CompanyRegistrationForm = () => {
           inputId="reg-email"
           labelFor="reg-email"
           isRequired
-          onChange={handleRegistrationFormChange}
+          onChange={(e) => {
+            handleRegistrationFormChange(e, setFormFields);
+          }}
           isActive={formFields.email.isActive}
           isValid={formFields.email.isValid}
           labelText="Company Email"
@@ -152,7 +127,9 @@ export const CompanyRegistrationForm = () => {
           inputId="reg-password"
           labelFor="reg-password"
           isRequired
-          onChange={handleRegistrationFormChange}
+          onChange={(e) => {
+            handleRegistrationFormChange(e, setFormFields);
+          }}
           isActive={formFields.password.isActive}
           isValid={formFields.password.isValid}
           labelText="Password"
@@ -201,7 +178,9 @@ export const CompanyRegistrationForm = () => {
           inputId="reg-addressFirstLine"
           labelFor="reg-addressFirstLine"
           isRequired
-          onChange={handleRegistrationFormChange}
+          onChange={(e) => {
+            handleRegistrationFormChange(e, setFormFields);
+          }}
           isActive={formFields.addressFirstLine.isActive}
           isValid={formFields.addressFirstLine.isValid}
           labelText="Address Line 1"
@@ -219,7 +198,8 @@ export const CompanyRegistrationForm = () => {
         {!formFields.addressFirstLine.isValid &&
         formFields.addressFirstLine.isActive ? (
           <>
-            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
+            <ErrorMessage>Can not start with a space.</ErrorMessage>
+            <ErrorMessage>Minimum of 5 characters.</ErrorMessage>
             <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
           </>
         ) : null}
@@ -228,7 +208,9 @@ export const CompanyRegistrationForm = () => {
           inputId="reg-addressSecondLine"
           labelFor="reg-addressSecondLine"
           isRequired
-          onChange={handleRegistrationFormChange}
+          onChange={(e) => {
+            handleRegistrationFormChange(e, setFormFields);
+          }}
           isActive={formFields.addressSecondLine.isActive}
           isValid={formFields.addressSecondLine.isValid}
           labelText="Address Line 2"
@@ -246,7 +228,8 @@ export const CompanyRegistrationForm = () => {
         {!formFields.addressSecondLine.isValid &&
         formFields.addressSecondLine.isActive ? (
           <>
-            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
+            <ErrorMessage>Can not start with a space.</ErrorMessage>
+            <ErrorMessage>Minimum of 5 characters.</ErrorMessage>
             <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
           </>
         ) : null}
@@ -255,7 +238,9 @@ export const CompanyRegistrationForm = () => {
           inputId="reg-addressPostcode"
           labelFor="reg-addressPostcode"
           isRequired
-          onChange={handleRegistrationFormChange}
+          onChange={(e) => {
+            handleRegistrationFormChange(e, setFormFields);
+          }}
           isActive={formFields.addressPostcode.isActive}
           isValid={formFields.addressPostcode.isValid}
           labelText="Postcode"
@@ -273,7 +258,8 @@ export const CompanyRegistrationForm = () => {
         {!formFields.addressPostcode.isValid &&
         formFields.addressPostcode.isActive ? (
           <>
-            <ErrorMessage>Must contain letters if filled.</ErrorMessage>
+            <ErrorMessage>Can not start with a space.</ErrorMessage>
+            <ErrorMessage>Minimum of 5 characters.</ErrorMessage>
             <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
           </>
         ) : null}
@@ -293,7 +279,9 @@ export const CompanyRegistrationForm = () => {
                   : false
                 : true
             }
-            onChange={handleRegistrationFormChange}
+            onChange={(e) => {
+              handleRegistrationFormChange(e, setFormFields);
+            }}
             dropDownName="plans"
             options={[
               "Free Trial(30days)",
@@ -317,8 +305,8 @@ export const CompanyRegistrationForm = () => {
           </PrimaryBtn>
         </ContentCenteredRow>
       </VerticalFormWrapper>
-      <FormLink $color="#5dbea3" $fontSize={1.1} onClick={() => {}}>
-        Need Help?
+      <FormLink href="/password-reset" $color="#5dbea3" $fontSize={1.1}>
+        Forgot your password?
       </FormLink>
     </ContentCenteredColumn>
   );

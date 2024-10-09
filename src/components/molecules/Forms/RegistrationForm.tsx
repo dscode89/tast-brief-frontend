@@ -3,19 +3,17 @@ import { PrimaryBtn } from "../../atoms/Buttons/PrimaryBtn";
 import { HeadingTertiary } from "../../atoms/Typography/HeadingTertiary";
 import backgroundImg from "../../../assets/white-pattern-background.jpg";
 import { countryDialCodes } from "../../../mock-data/countryDialCodes";
-import { dateOfBirthOptions } from "../../../mock-data/dateOfBirthOptions";
-import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
 import { FormLink } from "../../styled/Forms/FormLink";
-import React, { FormEvent, SetStateAction, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { VerticalFormWrapper } from "../../styled/Forms/VerticalFormWrapper";
-import { SelectDropDown } from "./SelectDropDown";
 import { PhoneNumberInput } from "./PhoneNumberInput";
 import { InputFieldIconWrapper } from "../../styled/Forms/Inputs/InputFieldIconWrapper";
-import regexPatterns from "../../../utils/regexPatterns";
+import { handleRegistrationFormChange } from "../../../utils/formHandlers/formHandlers";
 import { InputWithLabel } from "./InputWithLabel";
 import { ErrorMessage } from "../../atoms/Errors/ErrorMessage";
 import { FormFieldInputs } from "../../../utils/types";
 import { DateOfBirthInput } from "./DateOfBirthInput";
+import { ContentCenteredRow } from "../../styled/containers/ContentCenteredRow";
 
 export interface SignInFormProps {}
 
@@ -25,7 +23,8 @@ export const RegistrationForm = () => {
   };
 
   const [formFields, setFormFields] = useState<FormFieldInputs>({
-    fullName: { value: "", isActive: false, isValid: false },
+    firstName: { value: "", isActive: false, isValid: false },
+    lastName: { value: "", isActive: false, isValid: false },
     password: { value: "", isActive: false, isValid: false },
     phoneNumber: { value: "", isActive: false, isValid: false },
     dateOfBirth: { value: "", isActive: false, isValid: false },
@@ -36,7 +35,8 @@ export const RegistrationForm = () => {
     if (
       formFields.password.isValid &&
       formFields.phoneNumber.isValid &&
-      formFields.fullName.isValid &&
+      formFields.firstName.isValid &&
+      formFields.lastName.isValid &&
       formFields.dateOfBirth.isValid
     ) {
       setSubmissionIsDisabled(false);
@@ -44,36 +44,6 @@ export const RegistrationForm = () => {
       setSubmissionIsDisabled(true);
     }
   }, [formFields]);
-
-  const handleRegistrationFormChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    e.preventDefault();
-    const specificInput = e.target.id.split("-")[1];
-    const specificRegex =
-      specificInput === "password" || specificInput === "email"
-        ? specificInput
-        : "genericTextInput";
-
-    setFormFields((current) => {
-      return {
-        ...current,
-        [specificInput]: {
-          isActive:
-            e.target.nodeName === "SELECT"
-              ? true
-              : e.target.value
-              ? true
-              : false,
-          value: e.target.value,
-          isValid:
-            e.target.nodeName === "SELECT"
-              ? true
-              : regexPatterns[specificRegex].test(e.target.value),
-        },
-      };
-    });
-  };
 
   return (
     <ContentCenteredColumn
@@ -90,28 +60,62 @@ export const RegistrationForm = () => {
         </HeadingTertiary>
 
         <InputWithLabel
-          inputId="reg-fullName"
-          labelFor="reg-fullName"
+          inputId="reg-firstName"
+          labelFor="reg-firstName"
           isRequired
-          onChange={handleRegistrationFormChange}
-          isActive={formFields.fullName.isActive}
-          isValid={formFields.fullName.isValid}
-          labelText="Full Name"
+          onChange={(e) => {
+            handleRegistrationFormChange(e, setFormFields);
+          }}
+          isActive={formFields.firstName.isActive}
+          isValid={formFields.firstName.isValid}
+          labelText="First Name"
         >
-          {formFields.fullName.isValid ? (
+          {formFields.firstName.isValid ? (
             <InputFieldIconWrapper $color="#5dbea3">
               &#10003;
             </InputFieldIconWrapper>
-          ) : formFields.fullName.value !== "" ? (
+          ) : formFields.firstName.value !== "" ? (
             <InputFieldIconWrapper $color="#FAA0A0">
               &#10007;
             </InputFieldIconWrapper>
           ) : null}
         </InputWithLabel>
-        {!formFields.fullName.isValid && formFields.fullName.isActive ? (
+        {!formFields.firstName.isValid && formFields.firstName.isActive ? (
           <>
+            <ErrorMessage>At least 2 characters long.</ErrorMessage>
             <ErrorMessage>Cannot start with a space.</ErrorMessage>
-            <ErrorMessage>Minimum of 5 characters.</ErrorMessage>
+            <ErrorMessage>Must contain a letter.</ErrorMessage>
+            <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
+          </>
+        ) : null}
+
+        <InputWithLabel
+          inputId="reg-lastName"
+          labelFor="reg-lastName"
+          isRequired
+          onChange={(e) => {
+            handleRegistrationFormChange(e, setFormFields);
+          }}
+          isActive={formFields.lastName.isActive}
+          isValid={formFields.lastName.isValid}
+          labelText="Last Name"
+        >
+          {formFields.lastName.isValid ? (
+            <InputFieldIconWrapper $color="#5dbea3">
+              &#10003;
+            </InputFieldIconWrapper>
+          ) : formFields.lastName.value !== "" ? (
+            <InputFieldIconWrapper $color="#FAA0A0">
+              &#10007;
+            </InputFieldIconWrapper>
+          ) : null}
+        </InputWithLabel>
+        {!formFields.lastName.isValid && formFields.lastName.isActive ? (
+          <>
+            <ErrorMessage>At least 2 characters long.</ErrorMessage>
+            <ErrorMessage>No special characters.</ErrorMessage>
+            <ErrorMessage>Cannot start with a space.</ErrorMessage>
+            <ErrorMessage>Must contain a letter.</ErrorMessage>
             <ErrorMessage>Maximum of 30 characters.</ErrorMessage>
           </>
         ) : null}
@@ -120,7 +124,9 @@ export const RegistrationForm = () => {
           inputId="reg-password"
           labelFor="reg-password"
           isRequired
-          onChange={handleRegistrationFormChange}
+          onChange={(e) => {
+            handleRegistrationFormChange(e, setFormFields);
+          }}
           isActive={formFields.password.isActive}
           isValid={formFields.password.isValid}
           labelText="Password"
@@ -153,6 +159,17 @@ export const RegistrationForm = () => {
           setFormFields={setFormFields}
           numberDetails={formFields.phoneNumber}
         />
+        {!formFields.phoneNumber.isValid && formFields.phoneNumber.isActive ? (
+          <>
+            <ErrorMessage>Can only contain numbers.</ErrorMessage>
+            <ErrorMessage>
+              Complete phone number must be 11 digits.
+            </ErrorMessage>
+            <ErrorMessage>
+              Complete phone number can not contain spaces.
+            </ErrorMessage>
+          </>
+        ) : null}
 
         <div
           style={{
@@ -174,31 +191,21 @@ export const RegistrationForm = () => {
           ) : null}
         </div>
 
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "0.8rem",
-          }}
-        >
+        <ContentCenteredRow>
           <PrimaryBtn
-            onClick={() => {}}
             color="white"
             bgcolor="#5dbea3"
             hoverBgColor="#7dcbb5"
+            onClick={() => {}}
             isDisabled={submissionIsDisabled}
           >
             Submit
           </PrimaryBtn>
-        </div>
+        </ContentCenteredRow>
       </VerticalFormWrapper>
-      <FormLink $color="#5dbea3" $fontSize={1.1} onClick={() => {}}>
-        Need Help?
+      <FormLink href="/password-reset" $color="#5dbea3" $fontSize={1.1}>
+        Forgot your password?
       </FormLink>
     </ContentCenteredColumn>
   );
 };
-
-// GO OVER ALL USER INTERACTIONS WITH FORMS AND THEN MOVE ONTO REPSONSIVENESS FOR ALL FORMS
-

@@ -72,7 +72,9 @@ export const LoginForm = () => {
           ) : null}
         </InputWithLabel>
         {!formFields.email.isValid && formFields.email.isActive ? (
-          <ErrorMessage>This doesn't look right. Please check!</ErrorMessage>
+          <ErrorMessage>
+            That doesn't look right! Please provide a valid email.
+          </ErrorMessage>
         ) : null}
 
         <InputWithLabel
