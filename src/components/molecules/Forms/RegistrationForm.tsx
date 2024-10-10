@@ -32,6 +32,7 @@ export const RegistrationForm = () => {
   const [submissionIsDisabled, setSubmissionIsDisabled] = useState(true);
 
   useEffect(() => {
+    console.log("in here");
     if (
       formFields.password.isValid &&
       formFields.phoneNumber.isValid &&

@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
 import { StyledSelectDropdownBox } from "../../styled/Forms/StyledSelectDropdownBox";
-import { SetStateAction } from "react";
 
 interface SelectDropDownProps {
   options: { [key: string]: string | number }[] | string[] | number[];
@@ -10,7 +9,6 @@ interface SelectDropDownProps {
   isDialCode?: boolean;
   value: string | number;
   isValid: boolean;
-  setIsValid: React.Dispatch<SetStateAction<boolean>>;
   id: string;
   onChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -19,7 +17,6 @@ interface SelectDropDownProps {
 
 export const SelectDropDown = ({
   isValid,
-  setIsValid,
   options,
   optionValue,
   optionText,
@@ -34,7 +31,6 @@ export const SelectDropDown = ({
       <StyledSelectDropdownBox
         value={value}
         $isValid={isValid}
-        onBlur={() => setIsValid(true)}
         onChange={onChange}
         name={dropDownName}
         id={id}

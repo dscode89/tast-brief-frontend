@@ -18,7 +18,7 @@ export const handleRegistrationFormChange = (
   } else {
     specificRegex = "genericTextInput";
   }
-  console.log(specificInput, "<--input", specificRegex, "<-- regex");
+
   setFormFields((current) => {
     return {
       ...current,

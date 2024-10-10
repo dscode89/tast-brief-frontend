@@ -49,36 +49,42 @@ export const DateOfBirthInput = ({ setFormFields }: DateOfBirthInputProps) => {
         }}
       >
         <SelectDropDown
-          onChange={(e) => setDobDate(e.target.value)}
+          onChange={(e) => {
+            setDobDateActive(true);
+            setDobDate(e.target.value);
+          }}
           dropDownName="date"
           options={dateOfBirthOptions.days}
           optionText="day"
           optionValue="day"
           isValid={dobDateActive}
-          setIsValid={setDobDateActive}
           value={dobDate}
           id="hello"
         />
         <SelectDropDown
-          onChange={(e) => setDobMonth(e.target.value)}
+          onChange={(e) => {
+            setDobMonthActive(true);
+            setDobMonth(e.target.value);
+          }}
           dropDownName="month"
           options={dateOfBirthOptions.months}
           optionText="month"
           optionValue="month"
           isValid={dobMonthActive}
-          setIsValid={setDobMonthActive}
           value={dobMonth}
           id="hello"
         />
 
         <SelectDropDown
-          onChange={(e) => setDobYear(e.target.value)}
+          onChange={(e) => {
+            setDobYearActive(true);
+            setDobYear(e.target.value);
+          }}
           dropDownName="date"
           options={dateOfBirthOptions.years}
           optionText="year"
           optionValue="year"
           isValid={dobYearActive}
-          setIsValid={setDobYearActive}
           value={dobYear}
           id="hello"
         />
