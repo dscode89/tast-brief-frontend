@@ -32,6 +32,7 @@ export const NavLinkBurgerMenu = ({
             <h3>Join Mailing List!</h3>
             <ModalForm />
             <PrimaryBtn
+              isDisabled={false}
               color="white"
               bgcolor="#000000"
               hoverBgColor="#36454F"

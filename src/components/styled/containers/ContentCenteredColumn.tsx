@@ -33,6 +33,7 @@ export const ContentCenteredColumn = styled.div<{
   $animateDirection?: "up" | "right";
 }>`
   width: 100%;
+  height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;

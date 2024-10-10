@@ -9,6 +9,7 @@ import regexPatterns from "../../../utils/regexPatterns";
 import { InputFieldIconWrapper } from "../../styled/Forms/Inputs/InputFieldIconWrapper";
 import { InputWithLabel } from "./InputWithLabel";
 import { ErrorMessage } from "../../atoms/Errors/ErrorMessage";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
 
 export const LoginForm = () => {
   const [formFields, setFormFields] = useState({
@@ -16,7 +17,8 @@ export const LoginForm = () => {
     email: { value: "", isActive: false, isValid: false },
   });
 
-  console.log(!formFields.password.isValid || !formFields.email.isValid);
+  const { width } = useWindowDimensions();
+
   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
@@ -47,7 +49,7 @@ export const LoginForm = () => {
         backgroundSize: "cover",
       }}
     >
-      <VerticalFormWrapper onSubmit={handleLoginSubmit}>
+      <VerticalFormWrapper onSubmit={handleLoginSubmit} $viewPortWidth={width}>
         <HeadingTertiary fontSizeRem={1.3} color="">
           Enter Login Details
         </HeadingTertiary>
