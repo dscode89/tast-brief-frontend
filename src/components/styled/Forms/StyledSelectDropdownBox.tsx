@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
+//THIS NEEDS TO BE CHANGED AS BLUE EVENT ISNT REACTIVE
 export const StyledSelectDropdownBox = styled.select<{ $isValid: boolean }>`
   background-color: #ffffff;
-  color: ${(props) => (props.$isValid ? "#5dbea3" : "#FAA0A0")};
+  color: ${(props) => (props.$isValid ? "#5dbea3" : "#000000")};
   fontweight: 600;
-  border: 2px solid ${(props) => (props.$isValid ? "#5dbea3" : "#FAA0A0")};
+  border: 2px solid ${(props) => (props.$isValid ? "#5dbea3" : "#000000")};
   padding: 0.5em;
   margin-right: 0.5em;
   margin-top: 0.25em;

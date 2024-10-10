@@ -12,6 +12,9 @@ export const DateOfBirthInput = ({ setFormFields }: DateOfBirthInputProps) => {
   const [dobDate, setDobDate] = useState("01");
   const [dobMonth, setDobMonth] = useState("01");
   const [dobYear, setDobYear] = useState("2024");
+  const [dobDateActive, setDobDateActive] = useState(false);
+  const [dobMonthActive, setDobMonthActive] = useState(false);
+  const [dobYearActive, setDobYearActive] = useState(false);
 
   useEffect(() => {
     const overSixteenCalculator = (dateString: string) => {
@@ -51,7 +54,8 @@ export const DateOfBirthInput = ({ setFormFields }: DateOfBirthInputProps) => {
           options={dateOfBirthOptions.days}
           optionText="day"
           optionValue="day"
-          isValid={true}
+          isValid={dobDateActive}
+          setIsValid={setDobDateActive}
           value={dobDate}
           id="hello"
         />
@@ -61,7 +65,8 @@ export const DateOfBirthInput = ({ setFormFields }: DateOfBirthInputProps) => {
           options={dateOfBirthOptions.months}
           optionText="month"
           optionValue="month"
-          isValid={true}
+          isValid={dobMonthActive}
+          setIsValid={setDobMonthActive}
           value={dobMonth}
           id="hello"
         />
@@ -72,7 +77,8 @@ export const DateOfBirthInput = ({ setFormFields }: DateOfBirthInputProps) => {
           options={dateOfBirthOptions.years}
           optionText="year"
           optionValue="year"
-          isValid={true}
+          isValid={dobYearActive}
+          setIsValid={setDobYearActive}
           value={dobYear}
           id="hello"
         />

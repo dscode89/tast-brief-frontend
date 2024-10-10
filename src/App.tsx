@@ -9,6 +9,7 @@ import { FormTemplate } from "./components/templates/LoginFormTemplate";
 import { LoginForm } from "./components/molecules/Forms/LoginForm";
 import { RegistrationForm } from "./components/molecules/Forms/RegistrationForm";
 import { CompanyRegistrationForm } from "./components/molecules/Forms/CompanyRegistrationForm";
+import { Dashboard } from "./components/organisms/Dashboard/Dashboard";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -53,6 +54,7 @@ function App() {
             </FormTemplate>
           }
         />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </>
   );
