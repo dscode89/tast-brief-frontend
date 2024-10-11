@@ -60,41 +60,31 @@ export const PhoneNumberInput = ({
         labelText="Contact Number(UK Numbers Only)"
       />
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "baseline",
+      <SelectDropDown
+        id="reg-phoneNumberDialCode"
+        isValid={
+          numberDetails.isActive ? (numberDetails.isValid ? true : false) : true
+        }
+        value={dialCode}
+        onChange={(e) => {
+          setDialCode(e.target.value);
         }}
-      >
-        <SelectDropDown
-          id="reg-phoneNumberDialCode"
-          isValid={
-            numberDetails.isActive
-              ? numberDetails.isValid
-                ? true
-                : false
-              : true
-          }
-          value={dialCode}
-          onChange={(e) => {
-            setDialCode(e.target.value);
-          }}
-          dropDownName="dial-codes"
-          options={countryDialCodes}
-          optionValue="code"
-          optionText="code"
-          isDialCode
-        />
+        dropDownName="dial-codes"
+        options={countryDialCodes}
+        optionValue="code"
+        optionText="code"
+        isDialCode
+      />
 
-        <SelectElementCompanionInput
-          onChange={handleNumberChange}
-          value={numberDetails.value}
-          type="text"
-          id="reg-phoneNumber"
-          $isActive={numberDetails.isActive}
-          $isValid={numberDetails.isValid}
-        />
-      </div>
+      <SelectElementCompanionInput
+        $placement="underneath"
+        onChange={handleNumberChange}
+        value={numberDetails.value}
+        type="text"
+        id="reg-phoneNumber"
+        $isActive={numberDetails.isActive}
+        $isValid={numberDetails.isValid}
+      />
     </div>
   );
 };

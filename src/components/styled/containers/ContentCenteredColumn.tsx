@@ -31,24 +31,27 @@ const ColumnSlideRight = keyframes`
 export const ContentCenteredColumn = styled.div<{
   $shouldAnimate: boolean;
   $animateDirection?: "up" | "right";
+  $width?: number;
 }>`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: scroll;
+  padding: 10px
   transition: transform, opacity 1s ease-in-out;
   ${(props) =>
-    props.$shouldAnimate
-      ? props.$animateDirection === "up"
-        ? css`
-            animation: ${ColumnSlideUp} 0.5s ease-in;
-          `
-        : css`
-            animation: ${ColumnSlideRight} 0.5s ease-in;
-          `
+    props.$width! > 950
+      ? props.$shouldAnimate
+        ? props.$animateDirection === "up"
+          ? css`
+              animation: ${ColumnSlideUp} 0.5s ease-in;
+            `
+          : css`
+              animation: ${ColumnSlideRight} 0.5s ease-in;
+            `
+        : null
       : null}
 `;

@@ -49,6 +49,7 @@ export const DateOfBirthInput = ({ setFormFields }: DateOfBirthInputProps) => {
         }}
       >
         <SelectDropDown
+          isGrouped={true}
           onChange={(e) => {
             setDobDateActive(true);
             setDobDate(e.target.value);
@@ -62,6 +63,7 @@ export const DateOfBirthInput = ({ setFormFields }: DateOfBirthInputProps) => {
           id="hello"
         />
         <SelectDropDown
+          isGrouped={true}
           onChange={(e) => {
             setDobMonthActive(true);
             setDobMonth(e.target.value);
@@ -76,6 +78,7 @@ export const DateOfBirthInput = ({ setFormFields }: DateOfBirthInputProps) => {
         />
 
         <SelectDropDown
+          isGrouped={true}
           onChange={(e) => {
             setDobYearActive(true);
             setDobYear(e.target.value);

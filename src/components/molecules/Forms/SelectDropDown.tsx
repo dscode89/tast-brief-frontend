@@ -7,6 +7,7 @@ interface SelectDropDownProps {
   optionText: string;
   dropDownName: string;
   isDialCode?: boolean;
+  isGrouped: boolean;
   value: string | number;
   isValid: boolean;
   id: string;
@@ -24,11 +25,13 @@ export const SelectDropDown = ({
   isDialCode,
   value,
   id,
+  isGrouped,
   onChange,
 }: SelectDropDownProps) => {
   return (
     <>
       <StyledSelectDropdownBox
+        $grouped={isGrouped}
         value={value}
         $isValid={isValid}
         onChange={onChange}

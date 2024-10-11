@@ -14,6 +14,7 @@ import { ErrorMessage } from "../../atoms/Errors/ErrorMessage";
 import { FormFieldInputs } from "../../../utils/types";
 import { DateOfBirthInput } from "./DateOfBirthInput";
 import { ContentCenteredRow } from "../../styled/containers/ContentCenteredRow";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
 
 export interface SignInFormProps {}
 
@@ -30,6 +31,7 @@ export const RegistrationForm = () => {
     dateOfBirth: { value: "", isActive: false, isValid: false },
   });
   const [submissionIsDisabled, setSubmissionIsDisabled] = useState(true);
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     if (
@@ -47,6 +49,7 @@ export const RegistrationForm = () => {
 
   return (
     <ContentCenteredColumn
+      $width={width}
       $shouldAnimate={true}
       $animateDirection="up"
       style={{
@@ -54,7 +57,7 @@ export const RegistrationForm = () => {
         backgroundSize: "cover",
       }}
     >
-      <VerticalFormWrapper onSubmit={handleSubmit}>
+      <VerticalFormWrapper onSubmit={handleSubmit} $viewPortWidth={width}>
         <HeadingTertiary fontSizeRem={1.3} color="">
           Let's get set up!
         </HeadingTertiary>

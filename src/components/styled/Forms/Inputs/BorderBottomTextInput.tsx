@@ -8,6 +8,7 @@ export const BorderBottomTextInput = styled.input<{
   width: 100%;
   border: none;
   position: relative;
+
   border-bottom: 2px solid
     ${(props) =>
       props.$isActive ? (props.$isValid ? "#5dbea3" : "#FAA0A0") : "#808080"};

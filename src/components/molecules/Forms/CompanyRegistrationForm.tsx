@@ -13,9 +13,10 @@ import { HeadingQuarternary } from "../../atoms/Typography/HeadingQuarternary";
 import { SelectDropDown } from "./SelectDropDown";
 import { OppositeEndSpacedRowContainer } from "../../styled/containers/OppositeEndSpacedRowContainer";
 import { FormFieldInputs } from "../../../utils/types";
-import { ContentCenteredRow } from "../../styled/containers/ContentCenteredRow";
 import { FormLink } from "../../styled/Forms/FormLink";
 import { handleRegistrationFormChange } from "../../../utils/formHandlers/formHandlers";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
+import { DynamicFlexAlignmentColumn } from "../../styled/containers/FlexRowButtonWrapper";
 
 export const CompanyRegistrationForm = () => {
   const [formFields, setFormFields] = useState<FormFieldInputs>({
@@ -29,6 +30,8 @@ export const CompanyRegistrationForm = () => {
     plan: { value: "Free Trial(30days)", isActive: true, isValid: true },
   });
   const [submissionIsDisabled, setSubmissionIsDisabled] = useState(true);
+  const [shouldAnimate, setShouldAnimate] = useState(true);
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     if (
@@ -53,14 +56,16 @@ export const CompanyRegistrationForm = () => {
 
   return (
     <ContentCenteredColumn
-      $shouldAnimate={true}
+      $width={width}
+      $shouldAnimate={shouldAnimate}
       $animateDirection="up"
       style={{
         backgroundImage: `url(${backgroundImg})`,
         backgroundSize: "cover",
+        overflow: "scroll",
       }}
     >
-      <VerticalFormWrapper onSubmit={handleSubmit}>
+      <VerticalFormWrapper onSubmit={handleSubmit} $viewPortWidth={width}>
         <HeadingTertiary fontSizeRem={1.3} color="">
           Let's get set up!
         </HeadingTertiary>
@@ -264,12 +269,13 @@ export const CompanyRegistrationForm = () => {
           </>
         ) : null}
 
-        <OppositeEndSpacedRowContainer>
-          <HeadingQuarternary fontSizeRem={0.7} color="#000000">
+        <OppositeEndSpacedRowContainer $width={100}>
+          <HeadingQuarternary fontSizeRem={0.9} color="#000000">
             Choose Plan
           </HeadingQuarternary>
 
           <SelectDropDown
+            isGrouped={false}
             id="reg-plan"
             value={formFields.plan.value}
             isValid={
@@ -293,7 +299,7 @@ export const CompanyRegistrationForm = () => {
             optionValue="plan"
           />
         </OppositeEndSpacedRowContainer>
-        <ContentCenteredRow>
+        <DynamicFlexAlignmentColumn $alignment="center">
           <PrimaryBtn
             color="white"
             bgcolor="#5dbea3"
@@ -303,11 +309,11 @@ export const CompanyRegistrationForm = () => {
           >
             Submit
           </PrimaryBtn>
-        </ContentCenteredRow>
+        </DynamicFlexAlignmentColumn>
+        <FormLink href="/password-reset" $color="#5dbea3" $fontSize={1.1}>
+          Forgot your password?
+        </FormLink>
       </VerticalFormWrapper>
-      <FormLink href="/password-reset" $color="#5dbea3" $fontSize={1.1}>
-        Forgot your password?
-      </FormLink>
     </ContentCenteredColumn>
   );
 };

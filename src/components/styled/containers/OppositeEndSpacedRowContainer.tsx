@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
-export const OppositeEndSpacedRowContainer = styled.div`
+export const OppositeEndSpacedRowContainer = styled.div<{ $width: number }>`
   margin-top: 0.8rem;
   display: flex;
   align-items: center;
-  width: 100%;
+  width: ${(props) => props.$width}%;
   justify-content: space-between;
-  padding: 0.25em;
 `;

@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import logo from "./assets/logo.png";
 import { LandingPageTemplate } from "./components/templates/LandingPageTemplate";
 import { createGlobalStyle } from "styled-components";
-import { FormTemplate } from "./components/templates/LoginFormTemplate";
+import { FormTemplate } from "./components/templates/FormTemplate";
 import { LoginForm } from "./components/molecules/Forms/LoginForm";
 import { RegistrationForm } from "./components/molecules/Forms/RegistrationForm";
 import { CompanyRegistrationForm } from "./components/molecules/Forms/CompanyRegistrationForm";

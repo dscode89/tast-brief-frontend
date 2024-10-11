@@ -5,7 +5,7 @@ export const ContentCenteredRow = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  padding: 20px;
+  margin-top: 20px;
 `;

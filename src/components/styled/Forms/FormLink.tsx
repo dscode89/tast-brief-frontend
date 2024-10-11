@@ -9,7 +9,8 @@ export const FormLink = styled.a<{
   text-decoration: none;
   color: ${(props) => props.$color};
   margin-top: 0.3em;
-
+  width: 100%;
+  text-align: center;
   &:hover {
     text-decoration: underline;
     pointer: cursor;

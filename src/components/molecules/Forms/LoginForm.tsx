@@ -42,6 +42,7 @@ export const LoginForm = () => {
 
   return (
     <ContentCenteredColumn
+      $width={width}
       $shouldAnimate={false}
       $animateDirection="right"
       style={{
@@ -114,7 +115,7 @@ export const LoginForm = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "start",
             width: "100%",
             marginTop: "0.8rem",
           }}

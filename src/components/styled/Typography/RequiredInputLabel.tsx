@@ -12,7 +12,7 @@ export const RequiredInputLabel = ({
   return (
     <GenericLabel htmlFor={htmlFor}>
       {labelText}
-      <span style={{ color: "red" }}> *</span>
+      <span style={{ color: "red", fontSize: "1.1rem" }}> *</span>
     </GenericLabel>
   );
 };
